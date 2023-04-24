@@ -1,0 +1,27 @@
+<table class="table mx-auto mt-lg-5 " style="width: 1000px" >
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Customer Name</th>
+      <th scope="col">Mobile</th>
+      <th scope="col">Total Amount</th>
+      <th scope="col">Booking Date</th>
+      <th scope="col">From Date</th>
+      <th scope="col">to Date</th>
+      <th scope="col">Total Days</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody class="table-group-divider">
+    <tr *ngFor="let reservation of ReservationList">
+      <td> {{ reservation.idR }} </td>
+      <td> {{ reservation.idR }} </td>
+      <td> {{ reservation.mobile }} </td>
+      <td> {{ reservation.prixtotale }} </td>
+      <td> {{ reservation.reservationDate }} </td>
+      <td> {{ reservation.dateDebut }} </td>
+      <td> {{ reservation.dateFin }} </td>
+      <td (ended)="calculNBjours(reservation.idR)"> {{ reservation.totalDays }} </td>
+    </tr>
+  </tbody>
+</table>

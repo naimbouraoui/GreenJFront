@@ -1,0 +1,21 @@
+<table class="table mx-auto mt-lg-5 table-bordered" style="width: 1000px" >
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Ville</th>
+      <th scope="col">Adresse</th>
+      <th scope="col">Stars</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody class="table-group-divider">
+    <tr *ngFor="let accomodation of AccomodationList ">
+      <td> {{ accomodation.name }} </td>
+      <td> {{ accomodation.ville }} </td>
+      <td> {{ accomodation.adresse }} </td>
+      <td> {{ accomodation.stars }} </td>
+      <td><button type="button" class="btn btn-success" (click)="Delete(accomodation.idAccomodation)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
