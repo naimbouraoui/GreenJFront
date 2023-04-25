@@ -9,6 +9,7 @@ import { Page1Component } from './backoffice/page1/page1.component';
 import { Page2Component } from './backoffice/page2/page2.component';
 import { RouterModule, Routes } from '@angular/router';
 import { AccomodationFormComponent } from './backoffice/accomodation-form/accomodation-form.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 export const appRouteList: Routes = [
@@ -42,7 +43,8 @@ export const appRouteList: Routes = [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    RouterModule.forRoot(appRouteList)
+    RouterModule.forRoot(appRouteList),
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

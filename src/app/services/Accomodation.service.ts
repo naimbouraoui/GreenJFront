@@ -4,6 +4,7 @@ import { environment } from '../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Reservation } from '../models/reservation';
+import { FormGroup } from '@angular/forms';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -14,8 +15,9 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class AccomodationService {
-  baseUrl = 'http://localhost:9091/accomodation';
+  baseUrl = 'http://localhost:1929/accomodation';
   accomodation: Accomodation = new Accomodation();
+  public dataForm!: FormGroup;
   constructor(
     private http: HttpClient
   ) { }
@@ -37,7 +39,10 @@ export class AccomodationService {
   }
   Delete(id: number) {
     return this.http.post(this.baseUrl+'/Chambre', {id});
-
-
   }
+  addAcc(formData:FormData): Observable<any> {
+    console.log(formData);
+    const requestOptions = { headers: new HttpHeaders({ 'content-type': "application/json" }) };
+    return this.http.post(this.baseUrl+ '/add', formData,requestOptions);
+}
 }

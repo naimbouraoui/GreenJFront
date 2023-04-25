@@ -2,6 +2,7 @@ import { Accomodation } from 'src/app/models/accomodation';
 import { AccomodationService } from './../../services/Accomodation.service';
 import { Component, OnInit } from '@angular/core';
 
+
 @Component({
   selector: 'app-page1',
   templateUrl: './page1.component.html',
