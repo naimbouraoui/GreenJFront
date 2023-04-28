@@ -1,4 +1,5 @@
 import { Chambre } from "./chambre";
+import { HotelAmenity } from "./hotel-amenity";
 import { Reservation } from "./reservation";
 import { TypeAccomodation } from "./type-accomodation";
 
@@ -12,6 +13,7 @@ export class Accomodation {
   stars!: number;
   typeAcc!:TypeAccomodation
   description!:string
+  amenities!:Array<HotelAmenity>;
   //Chambre!: Array<Chambre>;
   //Resrvation!:Array<Reservation>;
   //constructor(name:string,ville:string,typeAcc:TypeAccomodation,)

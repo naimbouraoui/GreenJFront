@@ -15,7 +15,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class AccomodationService {
-  baseUrl = 'http://localhost:1929/accomodation';
+  baseUrl = 'http://localhost:9091/accomodation';
   accomodation: Accomodation = new Accomodation();
   public dataForm!: FormGroup;
   constructor(
@@ -42,7 +42,6 @@ export class AccomodationService {
   }
   addAcc(formData:FormData): Observable<any> {
     console.log(formData);
-    const requestOptions = { headers: new HttpHeaders({ 'content-type': "application/json" }) };
-    return this.http.post(this.baseUrl+ '/add', formData,requestOptions);
+    return this.http.post(this.baseUrl+ '/add', formData);
 }
 }

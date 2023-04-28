@@ -1,11 +1,15 @@
 import { ReservationService } from './../../services/reservation.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Reservation } from 'src/app/models/reservation';
 
 @Component({
   selector: 'app-page2',
   templateUrl: './page2.component.html',
-  styleUrls: ['./page2.component.css']
+  styleUrls: ['./page2.component.css',
+  '../../../assets/css/paper-dashboard.css',
+  '../../../assets/demo/demo.css',
+  '../../../assets/css/bootstrap.min.css',],
+  encapsulation: ViewEncapsulation.None,
 })
 export class Page2Component implements OnInit {
   ReservationList: Array<Reservation> = [];

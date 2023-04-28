@@ -10,6 +10,10 @@ import { Page2Component } from './backoffice/page2/page2.component';
 import { RouterModule, Routes } from '@angular/router';
 import { AccomodationFormComponent } from './backoffice/accomodation-form/accomodation-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SidenavComponent } from './backoffice/sidenav/sidenav.component';
+import { RoomsComponent } from './backoffice/rooms/rooms.component';
+import { AddRoomComponent } from './backoffice/add-room/add-room.component';
+import { HomeComponent } from './backoffice/home/home.component';
 
 
 export const appRouteList: Routes = [
@@ -26,6 +30,14 @@ export const appRouteList: Routes = [
     component: AccomodationFormComponent
   },
   {
+    path: 'rooms',
+    component: RoomsComponent
+  },
+  {
+    path: 'addroom',
+    component: AddRoomComponent
+},
+  {
       path: '**',
       redirectTo: 'page1'
   }
@@ -37,7 +49,11 @@ export const appRouteList: Routes = [
     SidebarComponent,
     Page1Component,
     Page2Component,
-    AccomodationFormComponent
+    AccomodationFormComponent,
+    SidenavComponent,
+    RoomsComponent,
+    AddRoomComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
