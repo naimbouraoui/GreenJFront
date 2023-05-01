@@ -15,7 +15,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class AccomodationService {
-  baseUrl = 'http://localhost:9091/accomodation';
+  baseUrl = 'http://localhost:9090/accomodation';
   accomodation: Accomodation = new Accomodation();
   public dataForm!: FormGroup;
   constructor(
@@ -37,11 +37,15 @@ export class AccomodationService {
     const url = `${this.baseUrl}/${id}`;
     return this.http.delete<boolean>(url);
   }
-  Delete(id: number) {
-    return this.http.post(this.baseUrl+'/Chambre', {id});
-  }
+
   addAcc(formData:FormData): Observable<any> {
     console.log(formData);
     return this.http.post(this.baseUrl+ '/add', formData);
+}
+getAccbyId(id:number):Observable<Accomodation>{
+  return this.http.get<Accomodation>(`${this.baseUrl}/${id}`);
+}
+modifierAcc(formData:FormData): Observable<any> {
+  return this.http.put(this.baseUrl, formData);
 }
 }

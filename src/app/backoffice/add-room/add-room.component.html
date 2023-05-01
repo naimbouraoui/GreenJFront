@@ -42,12 +42,20 @@
                 <h5 class="card-title">New Room</h5>
               </div>
               <div class="card-body">
+                <div class="row">
+                  <div class="col-md-1 pr-1">
+                    <div class="form-group">
+                      <label>Accomodation ID</label>
+                      <input type="number" class="form-control" id="name" [(ngModel)]="value" >
+                    </div>
+                    </div>
+                </div>
                 <form  [formGroup]="fb" (ngSubmit)="ajouterChambre()" class="ng-pristine ng-invalid ng-touched">
                   <div class="row">
                     <div class="col-md-3 pr-1">
                       <div class="form-group">
                         <label>Title</label>
-                        <input type="text" class="form-control" placeholder="enter the room title"  id="name" formControlName="nomCH">
+                        <input type="text" class="form-control" (blur)=" this.getAccById(this.value)" placeholder="enter the room title"  id="name" formControlName="nomCH">
                       </div>
                       </div>
                       <div class="col-md-3 pr-1">
@@ -121,7 +129,7 @@
                       </div>
                     </div>
                     </div>
-                  <button type="submit" class="btn btn-primary" >Save changes</button>
+                  <button type="submit"  class="btn btn-primary" >Save changes</button>
                 </form>
               </div>
             </div>

@@ -1,1 +1,119 @@
 <app-sidenav></app-sidenav>
+<form class="w-50 p-3 float-end text-center" >
+  <br>
+  <p class="fs-2 text-center">Accommodation Registration Form</p>
+  <hr>
+  <!-- 2 column grid layout with text inputs for the first and last names -->
+  <div class="row mb-4 ">
+    <div class="col ">
+      <div class="form-outline row mb-4  ">
+        <div  class="col-md-4">
+        <label class="form-label" for="form6Example1">Name</label>
+      </div>
+      <div class="col-md-8">
+        <div class="form-outline">
+        <input type="text" id="name" class="form-control" formControlName="name">
+        </div>
+      </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-outline row mb-9  ">
+        <div  class="col-md-3">
+        <label class="form-label" for="form6Example2">Ville</label>
+        </div>
+        <div class="col-md-9">
+          <div class="form-outline">
+          <select class="form-select" id="form6Example2" aria-label="Example select with button addon" >
+            <option selected>Select a city</option>
+            <option value="sousse">sousse</option>
+            <option value="tunis">tunis</option>
+            <option value="ariana">ariana</option>
+            <option value="kasserine">kasserine</option>
+            <option value="mahdia">mahdia</option>
+          </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mb-4 ">
+  <div class="col">
+    <div class="form-outline row mb-4  ">
+      <div  class="col-md-4">
+      <label class="form-label " for="form6Example2">Accomodation type</label>
+    </div>
+    <div class="col-md-8">
+      <div class="form-outline">
+        <select class="form-select" id="form6Example2" aria-label="Example select with button addon"  >
+          <option Value="Hotel">Hotel</option>
+          <option value="GuestHouse">Guet house</option>
+        </select>
+      </div>
+    </div>
+    </div>
+  </div>
+  <!-- Email input -->
+  <div class="col">
+  <div class="form-outline row mb-4  ">
+    <div  class="col-md-3">
+    <label class="form-label" for="form6Example5">Email</label>
+    </div>
+    <div class="col-md-9">
+      <div class="form-outline">
+    <input type="email" id="email" class="form-control" placeholder="name@example.com" formControlName="email" />
+  </div>
+    </div>
+  </div>
+  </div>
+  </div>
+  <div>
+ <div class="form-outline row mb-4 ms-5" style="max-width: 200px;" >
+        <div  class="col-md-3">
+    <label class="form-label " for="form6Example3">Stars</label>
+        </div>
+    <div class="col-md-9 form-outline ">
+    <select class="form-select ms-3 " style="max-width: 150px;" id="inputGroupSelect03" aria-label="Example select with button addon" >
+      <option selected >Select the number of Stars</option>
+      <option Value=1>*</option>
+      <option Value=2>**</option>
+      <option Value=3>***</option>
+      <option Value=4>****</option>
+      <option Value=5>*****</option>
+      <option Value=6>******</option>
+      <option Value=7>*******</option>
+    </select>
+    </div>
+  </div>
+  </div>
+
+
+  <div class="input-group mb-3">
+    <input type="image" class="form-control" id="inputGroupFile02">
+    <label class="input-group-text" for="inputGroupFile02">Upload</label>
+  </div>
+  <div class="form-group">
+    <label class="d-inline-block align-middle mr-3">Amenities:</label>
+    <div class="d-inline-block align-middle">
+      <br>
+      <div  class="form-check form-check-inline">
+        <input type="checkbox" class="form-check-input"  >
+        <label class="form-check-label">ajb aj</label>
+      </div>
+    </div>
+  </div>
+  <br>
+  <br>
+  <!-- Message input -->
+  <div class="form-outline mb-4">
+    <label class="form-label" for="form6Example7">Accomodation Description</label>
+    <br>
+    <textarea class="form-control" id="description" rows="4" placeholder="give us a brief description about your accomodation" formControlName="description"></textarea>
+  </div>
+  <!-- Submit button -->
+  <button type="submit" class="btn btn-primary btn-block mb-4" >Add Accomodation</button>
+</form>
+<!DOCTYPE html>
+<html lang="en">
+  <app-sidenav></app-sidenav>
+<head>

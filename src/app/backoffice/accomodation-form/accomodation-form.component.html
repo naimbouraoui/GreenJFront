@@ -1,115 +1,235 @@
 <app-sidenav></app-sidenav>
-<form class="w-50 p-3 float-end text-center" [formGroup]="fb" (ngSubmit)="addAccomodation()">
-  <br>
-  <p class="fs-2 text-center">Accommodation Registration Form</p>
-  <hr>
-  <!-- 2 column grid layout with text inputs for the first and last names -->
-  <div class="row mb-4 ">
-    <div class="col ">
-      <div class="form-outline row mb-4  ">
-        <div  class="col-md-4">
-        <label class="form-label" for="form6Example1">Name</label>
-      </div>
-      <div class="col-md-8">
-        <div class="form-outline">
-        <input type="text" id="name" class="form-control" formControlName="name">
+<!DOCTYPE html>
+<html lang="en">
+  <app-sidenav></app-sidenav>
+<head>
+  <meta charset="utf-8" />
+  <link rel="apple-touch-icon" sizes="76x76" href="../../../assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="../../../assets/img/favicon.png">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <title>
+    Paper Dashboard 2 by Creative Tim
+  </title>
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
+    name='viewport' />
+  <!--     Fonts and icons     -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+  <!-- CSS Files -->
+  <link href="../../../assets/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="../../../assets/css/paper-dashboard.css" rel="stylesheet" />
+  <!-- CSS Just for demo purpose, don't include it in your project -->
+  <link href="../../../assets/demo/demo.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+    integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/js/all.min.js"
+    integrity="sha512-8pHNiqTlsrRjVD4A/3va++W1sMbUHwWxxRPWNyVlql3T+Hgfd81Qc6FC5WMXDC+tSauxxzp1tgiAvSKFu1qIlA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+</head>
+
+<body class="">
+  <div class="wrapper ">
+    <div class="main-panel">
+      <!-- Navbar -->
+      <!-- End Navbar -->
+      <div class="content">
+        <div class="row">
+
+          <div class="col-md-12">
+            <div class="card card-user" >
+              <div class="card-header">
+                <h5 class="card-title">New Accomodation</h5>
+              </div>
+              <div class="card-body ">
+                <!--(ngSubmit)="addAccomodation()"-->
+                <form [formGroup]="fb" class="ng-pristine ng-invalid ng-touched">
+                  <div class="row">
+                    <div class="col-md-3 pr-1">
+                      <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" class="form-control" placeholder="enter the accomodation name" formControlName="name" required pattern="^[A-Za-z\s]+$">
+                        <div class="alert alert-danger" *ngIf="fb.controls['name'].invalid && fb.get('name')?.touched">
+                        <div  *ngIf="fb.get('name')?.errors?.['required']">Champ vide</div>
+                        <div *ngIf="fb.get('name')?.errors?.['pattern']">Le champ doit contenir uniquement des lettres et des espaces</div>
+                      </div>
+                      </div>
+                      </div>
+                      <div class="col-md-3 pr-1">
+                        <div class="form-group">
+                          <label>Ville</label>
+                          <div class="form-outline">
+                            <select class="form-select" id="form6Example2"  aria-label="Example select with button addon" (change)="onSelect($event)">
+                              <option selected></option>
+                              <option value="sousse">sousse</option>
+                              <option value="tunis">tunis</option>
+                              <option value="ariana">ariana</option>
+                              <option value="kasserine">kasserine</option>
+                              <option value="mahdia">mahdia</option>
+                            </select>
+                            </div>
+                        </div>
+                      </div>
+
+                  </div>
+                  <div class="row">
+                    <div class="col-md-3 pr-1">
+                      <div class="form-group">
+                        <label>Accomodation Type</label>
+                        <div class="form-outline">
+                          <select class="form-select" id="form6Example2"  aria-label="Example select with button addon" (change)="onSelectacc($event)" required >
+                            <option [ngValue]="null" selected ></option>
+                            <option Value="Hotel">Hotel</option>
+                            <option value="GuestHouse">Guet house</option>
+                          </select>
+                          <div class="alert alert-danger" *ngIf="fb.get('typeAcc')?.invalid && fb.get('typeAcc')?.touched">
+                            <div *ngIf="fb.get('typeAcc')?.errors?.['required']">Please select an accommodation type
+                            </div>
+                        </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-3 pr-1">
+                      <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" class="form-control" placeholder="name@example.com" formControlName="email">
+                        <div class="alert alert-danger" *ngIf="fb.get('email')?.invalid && fb.get('email')?.touched">
+                          <div *ngIf="fb.get('email')?.errors?.['required']">Champ vide</div>
+                          <div *ngIf="fb.get('email')?.errors?.['email']">Adresse email invalide</div>
+                        </div>
+                    </div>
+                    </div>
+                  </div>
+                    <div class="row">
+
+                      <div class="col-md-3 pr-1">
+                        <div class="form-group">
+                          <div class="form-group">
+                            <label for="">Address</label>
+                        <input type="text" id="name" class="form-control" placeholder="enter the accomodation address" formControlName="addresse">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-1 pr-1">
+                      <div class="form-group">
+                        <label for="">Stars</label>
+                          <select class="form-select  " style="max-width: 150px;" id="inputGroupSelect03" aria-label="Example select with button addon" (change)="onSelectStars($event)">
+                            <option selected ></option>
+                            <option Value=1>*</option>
+                            <option Value=2>**</option>
+                            <option Value=3>***</option>
+                            <option Value=4>****</option>
+                            <option Value=5>*****</option>
+                            <option Value=6>******</option>
+                            <option Value=7>*******</option>
+                          </select>
+                          </div>
+                    </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-3 pr-2 ">
+                        <div class="form-group">
+                          <label>Amenities </label>
+                          <br>
+                          <div class="col-md-9 pr3 ">
+                          <div *ngFor="let amenity of amenitiesList" class=" ">
+                            <input type="checkbox"  class="form-check-input form-check-input-border" [value]="amenity.value"  name="room-type" (change)="onCheckboxChange($event)">
+                            <label  class="form-check-label">{{ amenity.label }}</label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    </div>
+                    <div class="form-group">
+                    <div class="form-outline mb-4 w-50">
+                      <label class="form-label" for="form6Example7">Accomodation Description</label>
+                      <br>
+                      <textarea class="form-control" id="description" rows="7" placeholder="give us a brief description about your accomodation" formControlName="description"></textarea>
+                    </div>
+                    </div>
+                    <button (click)="goBack()">go back</button>
+    <div *ngFor="let progressInfo of progress" class="mb-2">
+      <span>{{ progressInfo.fileName }}</span>
+      <div class="progress">
+        <div
+          class="progress-bar progress-bar-info progress-bar-striped"
+          role="progressbar"
+          attr.aria-valuenow="{{ progressInfo.value }}"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          [ngStyle]="{ width: progressInfo.value + '%' }">
+          {{ progressInfo.value }}%
         </div>
-      </div>
       </div>
     </div>
-    <div class="col">
-      <div class="form-outline row mb-9  ">
-        <div  class="col-md-3">
-        <label class="form-label" for="form6Example2">Ville</label>
-        </div>
-        <div class="col-md-9">
-          <div class="form-outline">
-          <select class="form-select" id="form6Example2" aria-label="Example select with button addon" (change)="onSelect($event)">
-            <option selected>Select a city</option>
-            <option value="sousse">sousse</option>
-            <option value="tunis">tunis</option>
-            <option value="ariana">ariana</option>
-            <option value="kasserine">kasserine</option>
-            <option value="mahdia">mahdia</option>
-          </select>
+
+    <div class="row">
+      <div class="col-8">
+        <label class="btn btn-default p-0">
+          <input type="file" accept="*" multiple (change)="selectFiles($event)" />
+        </label>
+      </div>
+
+      <div class="col-4">
+        <button
+          class="btn btn-success btn-sm"
+          [disabled]="!selectedFiles"
+          (click)="addAccomodationWithFiles()">
+          Upload
+        </button>
+      </div>
+    </div>
+
+    <div>
+      <img *ngFor='let preview of previews' [src]="preview" class="preview">
+    </div>
+
+    <div *ngIf="message.length" class="alert alert-secondary my-3" role="alert">
+      <ul *ngFor="let msg of message; let i = index">
+        <li>{{ msg }}</li>
+      </ul>
+    </div>
+
+    <div class="card mt-3">
+      <div class="card-header">List of Images</div>
+      <ul class="list-group list-group-flush"*ngFor="let image of fileInfos | async">
+        <li class="list-group-item">
+          <p><a href="{{ image.url }}">{{ image.name }}</a></p>
+        </li>
+      </ul>
+    </div>
+                  <button type="submit" class="btn btn-primary" >Save changes</button>
+                </form>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="row mb-4 ">
-  <div class="col">
-    <div class="form-outline row mb-4  ">
-      <div  class="col-md-4">
-      <label class="form-label " for="form6Example2">Accomodation type</label>
-    </div>
-    <div class="col-md-8">
-      <div class="form-outline">
-        <select class="form-select" id="form6Example2" aria-label="Example select with button addon" (change)="onSelectacc($event)" >
-          <option Value="Hotel">Hotel</option>
-          <option value="GuestHouse">Guet house</option>
-        </select>
-      </div>
-    </div>
-    </div>
-  </div>
-  <!-- Email input -->
-  <div class="col">
-  <div class="form-outline row mb-4  ">
-    <div  class="col-md-3">
-    <label class="form-label" for="form6Example5">Email</label>
-    </div>
-    <div class="col-md-9">
-      <div class="form-outline">
-    <input type="email" id="email" class="form-control" placeholder="name@example.com" formControlName="email" />
-  </div>
-    </div>
-  </div>
-  </div>
-  </div>
-  <div>
- <div class="form-outline row mb-4 ms-5" style="max-width: 200px;" >
-        <div  class="col-md-3">
-    <label class="form-label " for="form6Example3">Stars</label>
-        </div>
-    <div class="col-md-9 form-outline ">
-    <select class="form-select ms-3 " style="max-width: 150px;" id="inputGroupSelect03" aria-label="Example select with button addon" (change)="onSelectStars($event)">
-      <option selected >Select the number of Stars</option>
-      <option Value=1>*</option>
-      <option Value=2>**</option>
-      <option Value=3>***</option>
-      <option Value=4>****</option>
-      <option Value=5>*****</option>
-      <option Value=6>******</option>
-      <option Value=7>*******</option>
-    </select>
-    </div>
-  </div>
-  </div>
+  <!--   Core JS Files   -->
 
+  <script src="../../../assets/js/core/jquery.min.js"></script>
+  <script src="../../../assets/js/core/popper.min.js"></script>
+  <script src="../../../assets/js/core/bootstrap.min.js"></script>
+  <script src="../../../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+  <!--  Google Maps Plugin    -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+  <!-- Chart JS -->
+  <script src="../../../assets/js/plugins/chartjs.min.js"></script>
+  <!--  Notifications Plugin    -->
+  <script src="../../../assets/js/plugins/bootstrap-notify.js"></script>
+  <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="../../../assets/js/paper-dashboard.min.js" type="text/javascript"></script>
+  <!-- Paper Dashboard DEMO methods, don't include it in your project! -->
+  <script src="../../../assets/demo/demo.js"></script>
+  <script>
+    $(document).ready(function () {
+      // Javascript method's body can be found in assets/assets-for-demo/js/demo.js
+      demo.initChartsPages();
+    });
+  </script>
+</body>
 
-  <div class="input-group mb-3">
-    <input type="image" class="form-control" id="inputGroupFile02">
-    <label class="input-group-text" for="inputGroupFile02">Upload</label>
-  </div>
-  <div class="form-group">
-    <label class="d-inline-block align-middle mr-3">Amenities:</label>
-    <div class="d-inline-block align-middle">
-      <br>
-      <div *ngFor="let amenity of amenitiesList" class="form-check form-check-inline">
-        <input type="checkbox" class="form-check-input" [value]="amenity.value" (change)="onCheckboxChange($event)">
-        <label class="form-check-label">{{ amenity.label }}</label>
-      </div>
-    </div>
-  </div>
-  <br>
-  <br>
-  <!-- Message input -->
-  <div class="form-outline mb-4">
-    <label class="form-label" for="form6Example7">Accomodation Description</label>
-    <br>
-    <textarea class="form-control" id="description" rows="4" placeholder="give us a brief description about your accomodation" formControlName="description"></textarea>
-  </div>
-  <!-- Submit button -->
-  <button type="submit" class="btn btn-primary btn-block mb-4" >Add Accomodation</button>
-</form>
+</html>

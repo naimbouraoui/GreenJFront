@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { Chambre } from 'src/app/models/chambre';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Accomodation } from 'src/app/models/accomodation';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-rooms',
@@ -19,14 +20,13 @@ export class RoomsComponent implements OnInit {
   accomodation!: Accomodation;
   chambre!:Chambre;
   show: boolean = false;
-  router: any;
   fb!:FormGroup;
   idChambre!:number
   selectedRadioButton!:any
   radioInput:any
   formGroupValue:any
 
-  constructor(private chambreService:ChambreService) { }
+  constructor(private chambreService:ChambreService,private router: Router) { }
 
   ngOnInit(): void {
     this.infoForm();
@@ -62,6 +62,7 @@ this.chambreService.getChById(id).subscribe((data: Chambre) => {
   console.log(this.fb.value);
   this.addToFormGroup();
   this.chambreService.addCh(this.fb.value).subscribe((data) => {
+    this.router.navigate(["/rooms"]);
   });
   this.getChambres();
 }
@@ -85,7 +86,7 @@ addToFormGroup() {
   this.formGroupValue = this.chambre.typech;
   console.log(this.formGroupValue);
   // find the radio input with the matching value and set its checked property to true
-  this.radioInput = document.querySelector('input[value=this.formGroupValue]')as HTMLInputElement;
+  this.radioInput = document.querySelector('input[name="room-type"][value=this.formGroupValue]:not(:checked)')as HTMLInputElement;
   console.log(this.radioInput);
   this.radioInput.checked=true ;
 

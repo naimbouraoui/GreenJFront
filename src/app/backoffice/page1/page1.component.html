@@ -42,14 +42,120 @@
                   New Accomodation </button>
                   </div>
                   <div class="card-body">
+                      <div *ngIf="show==true">
+                        <form [formGroup]="fb" (ngSubmit)="modifierAccomodation()" class="ng-pristine ng-invalid ng-touched">
+                          <div class="row">
+                            <div class="col-md-3 pr-1">
+                              <div class="form-group">
+                                <label>Name</label>
+                                <input type="text" id="name" class="form-control" placeholder="enter the accomodation name" formControlName="name">
+                              </div>
+                              </div>
+                              <div class="col-md-3 pr-1">
+                                <div class="form-group">
+                                  <label>Ville</label>
+                                  <div class="form-outline">
+                                    <select class="form-select" id="form6Example2"  aria-label="Example select with button addon" (change)="onSelect($event)">
+                                      <option selected></option>
+                                      <option [selected]="fb.controls['ville'].value === 'sousse'" value="sousse">sousse</option>
+                                      <option [selected]="fb.controls['ville'].value === 'tunis'" value="tunis">tunis</option>
+                                      <option [selected]="fb.controls['ville'].value === 'ariana'" value="ariana">ariana</option>
+                                      <option [selected]="fb.controls['ville'].value === 'kasserine'" value="kasserine">kasserine</option>
+                                      <option [selected]="fb.controls['ville'].value === 'mahdia'" value="mahdia">mahdia</option>
+                                    </select>
+                                    </div>
+                                </div>
+                              </div>
+
+                          </div>
+                          <div class="row">
+                            <div class="col-md-3 pr-1">
+                              <div class="form-group">
+                                <label>Accomodation Type</label>
+                                <div class="form-outline">
+                                  <select class="form-select" id="form6Example2"  aria-label="Example select with button addon" (change)="onSelectacc($event)" >
+                                    <option selected ></option>
+                                    <option [selected]="fb.controls['typeAcc'].value === 'Hotel'" Value="Hotel" >Hotel</option>
+                                    <option [selected]="fb.controls['typeAcc'].value === 'GuestHouse'" value="GuestHouse">Guet house</option>
+                                  </select>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-3 pr-1">
+                              <div class="form-group">
+                                <label>Email </label>
+                                <input type="email" id="email" class="form-control" placeholder="name@example.com" formControlName="email" />
+                              </div>
+                            </div>
+
+                            </div>
+                            <div class="row">
+
+                              <div class="col-md-3 pr-1">
+                                <div class="form-group">
+                                  <div class="form-group">
+                                    <label for="">Address</label>
+                                <input type="text" id="name" class="form-control" placeholder="enter the accomodation address" formControlName="addresse">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-1 pr-1">
+                              <div class="form-group">
+                                <label for="">Stars</label>
+                                  <select class="form-select  " style="max-width: 150px;" id="inputGroupSelect03" aria-label="Example select with button addon" (change)="onSelectStars($event)">
+                                    <option selected ></option>
+                                    <option [selected]="fb.controls['stars'].value === 1" Value=1>*</option>
+                                    <option [selected]="fb.controls['stars'].value === 2" Value=2>**</option>
+                                    <option [selected]="fb.controls['stars'].value === 3" Value=3>***</option>
+                                    <option [selected]="fb.controls['stars'].value === 4" Value=4>****</option>
+                                    <option [selected]="fb.controls['stars'].value === 5" Value=5>*****</option>
+                                    <option [selected]="fb.controls['stars'].value === 6" Value=6>******</option>
+                                    <option [selected]="fb.controls['stars'].value === 7" Value=7>*******</option>
+                                  </select>
+                                  </div>
+                            </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-3 pr-2 ">
+                                <div class="form-group">
+                                  <label>Amenities </label>
+                                  <br>
+                                  <div class="col-md-9 pr3 ">
+                                  <div *ngFor="let amenity of amenitiesList" class=" ">
+                                    <input type="checkbox"  class="form-check-input form-check-input-border"  [checked]="fb.controls['amenities'].value.indexOf(amenity.value) >= 0" [value]="amenity.value" name="room-type" (change)="onCheckboxChange($event)">
+                                    <label  class="form-check-label">{{ amenity.label }}</label>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            </div>
+                            <div class="form-group">
+                            <div class="form-outline mb-4 w-50">
+                              <label class="form-label" for="form6Example7">Accomodation Description</label>
+                              <br>
+                              <textarea class="form-control" id="description" rows="7" placeholder="give us a brief description about your accomodation" formControlName="description"></textarea>
+                            </div>
+                            </div>
+                            <div class="col-md-6 pr-1">
+                              <div class="mb-3">
+                              <label for="formFileMultiple" class="form-label">Multiple files input example</label>
+                              <input class="form-control" type="file" id="formFileMultiple" multiple>
+                              </div>
+                            </div>
+                          <button type="submit" class="btn btn-primary" (click)="show=false">Save changes</button>
+                        </form>
+                    </div>
+                  <br>
                 <br>
                 <div class="content table-responsive">
                   <table class="table table-hover table-stripted "style="width: max-content;">
                     <thead>
                       <tr>
+                        <th scope="col">Images</th>
                         <th scope="col">Name</th>
                         <th scope="col">City</th>
                         <th scope="col">Address</th>
+                        <th scope="col">Type</th>
                         <th scope="col">Stars</th>
                         <th scope="col">mail</th>
                         <th scope="col">Amenities</th>
@@ -58,19 +164,26 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr *ngFor="let accomodation of AccomodationList ">
-                        <td> {{ accomodation.name }} </td>
-                        <td> {{ accomodation.ville }} </td>
-                        <td> {{ accomodation.addresse }} </td>
-                        <td> {{ accomodation.stars }} </td>
-                        <td> {{ accomodation.email }} </td>
-                        <td> {{ accomodation.amenities }} </td>
-                        <td> {{ accomodation.description }} </td>
+                      <tr *ngFor="let accomodation1 of AccomodationList ">
+                        <td>
+                          <div *ngFor="let file of accomodation1.Files">
+                            <img src="{{file}}">
+                          </div>
+                        </td>
+                        <td>{{accomodation1.Files}}</td>
+                        <td> {{ accomodation1.name }} </td>
+                        <td> {{ accomodation1.ville }} </td>
+                        <td> {{ accomodation1.addresse }} </td>
+                        <td> {{ accomodation1.typeAcc }} </td>
+                        <td> {{ accomodation1.stars }} </td>
+                        <td> {{ accomodation1.email }} </td>
+                        <td> {{ accomodation1.amenities }} </td>
+                        <td> {{ accomodation1.description }} </td>
                         <td>
                           <button data-bs-toggle="modal"
-                          (click)="Delete(accomodation.idAccomodation)" data-bs-target="#exampleModal" class="btn btn-outline-info"><i class="fa fa-refresh"></i></button>
+                          (click)="getAccById(accomodation1.idAccomodation)" data-bs-target="#exampleModal" class="btn btn-outline-info"><i class="fa fa-refresh"></i></button>
                           &nbsp;
-                          <button type="button" (click)="Delete(accomodation.idAccomodation)"
+                          <button type="button" (click)="Delete(accomodation1.idAccomodation)"
                             class="btn btn-danger"><i class="fa fa-trash"></i></button>
                         </td>
                       </tr>
