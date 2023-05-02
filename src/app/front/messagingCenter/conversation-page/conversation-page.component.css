@@ -1,0 +1,30 @@
+.chatbox {
+    padding: 8px;
+    border-radius: 8px;
+    max-width: 70%;
+    min-width: 70%;
+    margin: 4px 12px;
+}
+
+.chatbox p {
+    margin: 0;
+}
+
+.chatbox span {
+    font-size: 12px;
+}
+
+.right {
+    color: #444;
+    float: right;
+    text-align: right;
+    padding-right: 5px;
+    border: 2px solid #eee;
+}
+
+.left {
+    background: #eee;
+    color: #444;
+    float: left;
+    text-align: left;
+}
