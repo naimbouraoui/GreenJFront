@@ -16,27 +16,32 @@ import { HomeComponent } from './backoffice/home/home.component';
 import { FormsModule } from '@angular/forms';
 import { BlogComponent } from './front/blog/blog.component';
 import { IndexComponent } from './front/index/index.component';
+import { PipesModule } from './services/messagingCenter/pipes/pipes.module';
+import { MessagingCenterComponent } from './front/messagingCenter/messaging-center/messaging-center.component';
+import { ConversationsListComponent } from './front/messagingCenter/conversations-list/conversations-list.component';
+import { ConversationPageComponent } from './front/messagingCenter/conversation-page/conversation-page.component';
+import { ToastrModule } from 'ngx-toastr';
 
 
 export const appRouteList: Routes = [
   {
     path: 'home',
     component: HomeComponent
-},
-{
-  path: 'index',
-  component: IndexComponent
-},
-  {
-      path: 'page1',
-      component: Page1Component
   },
   {
-      path: 'page2',
-      component: Page2Component
+    path: 'index',
+    component: IndexComponent
   },
   {
-    path:'Accomodation-form',
+    path: 'page1',
+    component: Page1Component
+  },
+  {
+    path: 'page2',
+    component: Page2Component
+  },
+  {
+    path: 'Accomodation-form',
     component: AccomodationFormComponent
   },
   {
@@ -46,10 +51,10 @@ export const appRouteList: Routes = [
   {
     path: 'addroom',
     component: AddRoomComponent
-},
+  },
   {
-      path: '**',
-      redirectTo: 'IndexComponent'
+    path: '**',
+    redirectTo: 'IndexComponent'
   }
 ];
 
@@ -65,13 +70,18 @@ export const appRouteList: Routes = [
     HomeComponent,
     BlogComponent,
     IndexComponent,
+    MessagingCenterComponent,
+    ConversationsListComponent,
+    ConversationPageComponent
   ],
   imports: [
     BrowserModule, FormsModule,
     AppRoutingModule,
     HttpClientModule,
     RouterModule.forRoot(appRouteList),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ToastrModule.forRoot(),
+    PipesModule
   ],
   providers: [],
   bootstrap: [AppComponent]
