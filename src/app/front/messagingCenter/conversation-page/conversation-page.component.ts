@@ -237,5 +237,6 @@ export class ConversationPageComponent implements OnInit {
 
   scrollToPageBottom()
   {
-    this.content.nativeElement.scrollTop = this.content.nativeElement.scrollHeight  }
+    this.content.nativeElement.scrollTop = this.content.nativeElement.scrollHeight
+    }
 }
