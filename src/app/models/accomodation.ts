@@ -13,7 +13,7 @@ export class Accomodation {
   stars!: number;
   typeAcc!:TypeAccomodation
   description!:string
-  amenities!:Array<HotelAmenity>;
+  amenities!:String;
   Files! : File[];
   //Chambre!: Array<Chambre>;
   //Resrvation!:Array<Reservation>;

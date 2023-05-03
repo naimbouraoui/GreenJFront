@@ -2,7 +2,7 @@ import { Router } from '@angular/router';
 import { Accomodation } from './../../models/accomodation';
 import { AccomodationService } from './../../services/Accomodation.service';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 
 
 @Component({
@@ -48,6 +48,7 @@ export class Page1Component implements OnInit {
      ville:new FormControl('',Validators.required),
      //amenities: new FormArray([])
      amenities: new FormControl(''),
+     Files:new FormArray([])
    });
   }
   getAccomodations(): void {

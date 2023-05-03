@@ -16,6 +16,9 @@ import { HomeComponent } from './backoffice/home/home.component';
 import { FormsModule } from '@angular/forms';
 import { BlogComponent } from './front/blog/blog.component';
 import { IndexComponent } from './front/index/index.component';
+import { BookComponent } from './front/book/book.component';
+import { AccBookComponent } from './front/acc-book/acc-book.component';
+import { HeaderComponent } from './front/header/header.component';
 
 
 export const appRouteList: Routes = [
@@ -32,6 +35,10 @@ export const appRouteList: Routes = [
       component: Page1Component
   },
   {
+    path: 'header',
+    component:BlogComponent
+},
+  {
       path: 'page2',
       component: Page2Component
   },
@@ -47,9 +54,17 @@ export const appRouteList: Routes = [
     path: 'addroom',
     component: AddRoomComponent
 },
+{
+  path: 'book',
+  component: BookComponent
+},
+{
+  path: 'accbook',
+  component: AccBookComponent
+},
   {
       path: '**',
-      redirectTo: 'IndexComponent'
+      redirectTo: 'AccBookComponent'
   }
 ];
 
@@ -65,6 +80,9 @@ export const appRouteList: Routes = [
     HomeComponent,
     BlogComponent,
     IndexComponent,
+    BookComponent,
+    AccBookComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule, FormsModule,

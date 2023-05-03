@@ -30,15 +30,134 @@ export class AccomodationFormComponent implements OnInit {
    amenitiesList = [  { value: 'pool', label: 'Swimming pool' },
      { value: 'gym', label: 'Fitness center' },  { value: 'spa', label: 'Spa and wellness center' },
      { value: 'wifi', label: 'wifi' },{ value: 'sona', label: 'Sona' },{ value: 'bar', label: 'bar' }];
+
      selectedFiles?: FileList;
-	currentFile?: File;
+	   currentFile?: File;
+	   progress : any[] = [];
+	   message:string[] = [];
+
+	previews: string[] = [];
+	fileInfos?: Observable<any>;
+  selectFiles(event: any): void {
+		this.message = [];
+		this.progress = [];
+		this.selectedFiles = event.target.files;
+
+		this.previews = [];
+		if (this.selectedFiles && this.selectedFiles[0]) {
+		  const numberOfFiles = this.selectedFiles.length;
+		  for (let i = 0; i < numberOfFiles; i++) {
+			const reader = new FileReader();
+
+			reader.onload = (e: any) => {
+			  console.log(e.target.result);
+			  this.previews.push(e.target.result);
+			};
+
+			reader.readAsDataURL(this.selectedFiles[i]);
+		  }
+		}
+	  }
+
+	fileUrl : any; //File url to upload
+	selected! : FileList;
+  addAccomodationWithFiles(): void
+  {
+   this.addAccomodation();
+   console.log(this.accomodation.idAccomodation);
+ }
+
+  constructor(
+    public accomodationService:AccomodationService,
+    private router: Router,
+    public fileService:FileService,
+    private location: Location
+  ) { }
+
+  ngOnInit(): void {
+    this.infoForm();
+    //this.fileInfos = this.fileService.getAccomodationFiles();
+  }
+  infoForm() {
+     this.fb = new FormGroup({
+      name: new FormControl('', [Validators.required, Validators.pattern(/^[A-Za-z\s]+$/)]),
+      addresse: new FormControl('', Validators.required),
+      stars:new FormControl('',Validators.required),
+      typeAcc:new FormControl(null,Validators.required),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      description: new FormControl('', Validators.required),
+      ville:new FormControl('',Validators.required),
+      //amenities: new FormArray([])
+      Files: new FormArray([]),
+      amenities: new FormControl(''),
+    });
+  }
+
+  onSelect(event:any){
+    this.ville1=event.target.value;
+    this.fb.controls['ville'].setValue(event.target.value);
+  }
+  onSelectStars(event:any){
+    this.fb.controls['stars'].setValue(event.target.value)
+  }
+  onSelectacc(event:any){
+    this.fb.controls['typeAcc'].setValue(event.target.value)
+  }
+  /*onCheckboxChange(event: any) {
+    const amenitiesArray = this.fb.controls['amenities'] as FormArray;
+    if (event.target.checked) {
+      amenitiesArray.push(new FormControl(event.target.value));
+    } else {
+      const index = amenitiesArray.controls.findIndex(x => x.value === event.target.value);
+      amenitiesArray.removeAt(index);
+    }
+  }*/
+  onCheckboxChange = (event: any) => {
+    const value = event.target.value;
+    const isChecked = event.target.checked;
+    const amenitiesControl = this.fb.controls['amenities'];
+    let amenities = amenitiesControl.value;
+
+    if (isChecked) {
+      if (amenities) {
+        amenities += ' ';
+      }
+      amenities += value;
+    } else {
+      amenities = amenities.replace(`${value} `, '');
+      amenities = amenities.replace(value, '');
+    }
+    amenitiesControl.setValue(amenities);
+  };
+  addAccomodation() {
+    console.log(this.fb.value);
+    console.log(this.ville1);
+    this.accomodationService.addAcc(this.fb.value).subscribe(() => this.goBack());
+    if (this.selectedFiles) {
+			for (let i = 0; i < this.selectedFiles.length; i++) {
+				if(this.selectedFiles[i])
+				{
+					//upload project with files
+					//this.project.projectFiles.push(new ProjectFile(	this.selectedFiles[i],this.selectedFiles[i].name,this.selectedFiles[i].type));
+					//this.project.user = this.projectService.storageUserAsStr.user;
+					//we need to be able to handle to upload of both project files and project itself
+					this.fileService.uploadAccomodationFileByAccId(this.selectedFiles[i],28).subscribe((res)=>{
+						console.log(res);
+					});
+				}
+			}
+    }
+  }
+  goBack(): void {
+		this.location.back();
+	}
+ /* currentFile?: File;
 	progress : any[] = [];
 	message:string[] = [];
 
 	previews: string[] = [];
 	fileInfos?: Observable<any>;
-
-	selectFiles(event: any): void {
+  selectFiles(event: any): void {
 		this.message = [];
 		this.progress = [];
 		this.selectedFiles = event.target.files;
@@ -71,11 +190,11 @@ export class AccomodationFormComponent implements OnInit {
 			this.upload(i, this.selectedFiles[i]);
 		  }
 		}
-	 }
+	 }*/
 
 
 	 //Use this after we have added the project to the database with a HTTP response of 200
-	 uploadFilesToAccomodation(AccId: number): void
+	 /*uploadFilesToAccomodation(AccId: number): void
 	 {
 		this.message = [];
 
@@ -87,7 +206,7 @@ export class AccomodationFormComponent implements OnInit {
 	 }
 	 addAccomodationWithFiles(): void
 	 {
-    const filesArray = this.fb.controls['files'] as FormArray;
+    const filesArray = this.fb.controls['Files'] as FormArray;
 		if (this.selectedFiles) {
 			for (let i = 0; i < this.selectedFiles.length; i++) {
 				if(this.selectedFiles[i])
@@ -152,75 +271,5 @@ export class AccomodationFormComponent implements OnInit {
 			}
 		  });
     }
-  }
-  constructor(
-    public accomodationService:AccomodationService,
-    private router: Router,
-    public fileService:FileService,
-    private location: Location
-  ) { }
-
-  ngOnInit(): void {
-    this.infoForm();
-    this.fileInfos = this.fileService.getAccomodationFiles();
-  }
-  infoForm() {
-     this.fb = new FormGroup({
-      name: new FormControl('', [Validators.required, Validators.pattern(/^[A-Za-z\s]+$/)]),
-      addresse: new FormControl('', Validators.required),
-      stars:new FormControl('',Validators.required),
-      typeAcc:new FormControl(null,Validators.required),
-      email: new FormControl('', [Validators.required, Validators.email]),
-      description: new FormControl('', Validators.required),
-      ville:new FormControl('',Validators.required),
-      //amenities: new FormArray([])
-      files: new FormArray([]),
-      amenities: new FormControl(''),
-    });
-  }
-
-  onSelect(event:any){
-    this.ville1=event.target.value;
-    this.fb.controls['ville'].setValue(event.target.value);
-  }
-  onSelectStars(event:any){
-    this.fb.controls['stars'].setValue(event.target.value)
-  }
-  onSelectacc(event:any){
-    this.fb.controls['typeAcc'].setValue(event.target.value)
-  }
-  /*onCheckboxChange(event: any) {
-    const amenitiesArray = this.fb.controls['amenities'] as FormArray;
-    if (event.target.checked) {
-      amenitiesArray.push(new FormControl(event.target.value));
-    } else {
-      const index = amenitiesArray.controls.findIndex(x => x.value === event.target.value);
-      amenitiesArray.removeAt(index);
-    }
   }*/
-  onCheckboxChange = (event: any) => {
-    const value = event.target.value;
-    const isChecked = event.target.checked;
-    const amenitiesControl = this.fb.controls['amenities'];
-    let amenities = amenitiesControl.value;
-
-    if (isChecked) {
-      if (amenities) {
-        amenities += ' ';
-      }
-      amenities += value;
-    } else {
-      amenities = amenities.replace(`${value} `, '');
-      amenities = amenities.replace(value, '');
-    }
-    amenitiesControl.setValue(amenities);
-  };
-  addAccomodation() {
-    console.log(this.fb.value);
-    console.log(this.ville1);
-    this.accomodationService.addAcc(this.fb.value).subscribe(() => this.goBack());
-  }
-  goBack(): void {
-		this.location.back();
-	}
 }

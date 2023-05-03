@@ -31,7 +31,7 @@ export class FileService {
     const formData : FormData = new FormData(); //Stores Key Value Pairs
     formData.append('file',file);
 
-    const req = new HttpRequest('POST', `${this.baseUrl}/upload${AccId}`,formData, {
+    const req = new HttpRequest('POST', `${this.baseUrl}/accomodation/${AccId}`,formData, {
       reportProgress:true,
       responseType:'json'
     });

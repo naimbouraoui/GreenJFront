@@ -15,17 +15,19 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class AccomodationService {
-  baseUrl = 'http://localhost:9090/accomodation';
+  baseUrl = 'http://localhost:9091/accomodation';
   accomodation: Accomodation = new Accomodation();
   public dataForm!: FormGroup;
   constructor(
     private http: HttpClient
   ) { }
-  storageUserAsStr: any = localStorage.getItem('currentUser')
-  ? JSON.parse(localStorage.getItem('currentUser') || '{}')
-  : null;
+
   getList():Observable<Accomodation[]> {
     return this.http.get<Accomodation[]>(this.baseUrl);
+  }
+  getListByNeeds(ville:any,datedebut:Date,datefin:Date,tyrooms:any):Observable<Accomodation[]>{
+    const nom="DispoAccomodations";
+    return this.http.get<Accomodation[]>(`${this.baseUrl}/${nom}/${ville}/${datedebut}/${datefin}/${tyrooms}`)
   }
   post_options = {
     method: 'POST',
