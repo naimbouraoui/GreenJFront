@@ -19,6 +19,7 @@ import { IndexComponent } from './front/index/index.component';
 import { BookComponent } from './front/book/book.component';
 import { AccBookComponent } from './front/acc-book/acc-book.component';
 import { HeaderComponent } from './front/header/header.component';
+import { RoomdetailsComponent } from './front/roomdetails/roomdetails.component';
 
 
 export const appRouteList: Routes = [
@@ -36,7 +37,11 @@ export const appRouteList: Routes = [
   },
   {
     path: 'header',
-    component:BlogComponent
+    component:HeaderComponent
+},
+{
+  path: 'blog',
+  component:BlogComponent
 },
   {
       path: 'page2',
@@ -83,6 +88,7 @@ export const appRouteList: Routes = [
     BookComponent,
     AccBookComponent,
     HeaderComponent,
+    RoomdetailsComponent,
   ],
   imports: [
     BrowserModule, FormsModule,
