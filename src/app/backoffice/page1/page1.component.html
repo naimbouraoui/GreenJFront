@@ -166,11 +166,10 @@
                     <tbody>
                       <tr *ngFor="let accomodation1 of AccomodationList ">
                         <td>
-                          <div *ngFor="let file of accomodation1.Files">
-                            <img src="{{file}}">
+                          <div>
+                            <img src="http://localhost:9091/File/files/{{accomodation1.Fileid}}" >
                           </div>
                         </td>
-                        <td>{{accomodation1.Files}}</td>
                         <td> {{ accomodation1.name }} </td>
                         <td> {{ accomodation1.ville }} </td>
                         <td> {{ accomodation1.addresse }} </td>
