@@ -45,6 +45,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   hasProgressBar: false
 };
 
+import { RoomdetailsComponent } from './front/roomdetails/roomdetails.component';
 
 
 export const appRouteList: Routes = [
@@ -62,7 +63,13 @@ export const appRouteList: Routes = [
   },
   {
     path: 'blog',
-    component:BlogComponent///,canActivate :[AuthGuard],data:{roles:['USER_ROLE']}
+    component:BlogComponent},///,canActivate :[AuthGuard],data:{roles:['USER_ROLE']}
+  {path: 'header',
+    component:HeaderComponent
+},
+{
+  path: 'blog',
+  component:BlogComponent
 },
   {
       path: 'page2',
@@ -122,7 +129,8 @@ export const appRouteList: Routes = [
     AccBookComponent,
     HeaderComponent,
     SignupComponent,
-    LoginComponent 
+    LoginComponent ,
+    RoomdetailsComponent
   ],
   imports: [
     BrowserModule, 

@@ -117,8 +117,8 @@ export class AccomodationFormComponent implements OnInit {
         console.log(res);
       });
       const formData : FormData = new FormData(); //Stores Key Value Pairs
-      formData.append('file',this.selectedFile);
-      //formData.append('accomodation', JSON.stringify(this.fb.value));
+      //formData.append('file',this.selectedFile);
+      formData.append('accomodation', this.fb.value);
       this.accomodationService.addAcc(formData).subscribe(() => this.goBack());
   }
 }
