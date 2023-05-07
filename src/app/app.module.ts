@@ -1,6 +1,6 @@
-import { Component, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule, ɵHttpInterceptingHandler } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,12 +19,38 @@ import { IndexComponent } from './front/index/index.component';
 import { BookComponent } from './front/book/book.component';
 import { AccBookComponent } from './front/acc-book/acc-book.component';
 import { HeaderComponent } from './front/header/header.component';
+import { SignupComponent } from './front/signup/signup.component';
+import {MatCardModule}from '@angular/material/card';
+import {MatSnackBarModule}from '@angular/material/snack-bar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoginComponent } from './front/login/login.component';
+import { AuthGuard } from './front/auth/auth.guard';
+import { AuthInterceptor } from './front/auth/auth.interceptor';
+import { UserService } from './services/user.service';
+import { NgxUiLoaderConfig ,SPINNER } from 'ngx-ui-loader';
+import { NgxUiLoaderModule } from 'ngx-ui-loader';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormGroup, FormControl } from '@angular/forms';
+
+
+const ngxUiLoaderConfig: NgxUiLoaderConfig = {
+  text: 'Loading...',
+  textColor: '#000000', // set text color to black
+  textPosition: 'center-center',
+  bgsColor: '#7b1fa2',
+  fgsColor: '#25974F', // set fgs color to green
+  fgsType: SPINNER.circle,
+  fgsSize: 100,
+  hasProgressBar: false
+};
+
 
 
 export const appRouteList: Routes = [
   {
     path: 'home',
-    component: HomeComponent
+    component: HomeComponent 
 },
 {
   path: 'index',
@@ -32,11 +58,11 @@ export const appRouteList: Routes = [
 },
   {
       path: 'page1',
-      component: Page1Component
+      component: Page1Component,canActivate :[AuthGuard],data:{roles:['ADMIN_ROLE']}
   },
   {
-    path: 'header',
-    component:BlogComponent
+    path: 'blog',
+    component:BlogComponent///,canActivate :[AuthGuard],data:{roles:['USER_ROLE']}
 },
   {
       path: 'page2',
@@ -59,8 +85,20 @@ export const appRouteList: Routes = [
   component: BookComponent
 },
 {
+  path: 'signup',
+  component: SignupComponent
+},
+{
+  path: 'login',
+  component: LoginComponent
+},
+{
   path: 'accbook',
   component: AccBookComponent
+},
+{
+  path: 'header',
+  component: HeaderComponent
 },
   {
       path: '**',
@@ -83,15 +121,33 @@ export const appRouteList: Routes = [
     BookComponent,
     AccBookComponent,
     HeaderComponent,
+    SignupComponent,
+    LoginComponent 
   ],
   imports: [
-    BrowserModule, FormsModule,
+    BrowserModule, 
     AppRoutingModule,
     HttpClientModule,
     RouterModule.forRoot(appRouteList),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSnackBarModule,
+    MatCardModule,
+    MatInputModule,
+    MatFormFieldModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    RouterModule,
+    NgxUiLoaderModule.forRoot(ngxUiLoaderConfig)
+   
   ],
-  providers: [],
+  providers: [
+    AuthGuard,
+    {
+      provide :HTTP_INTERCEPTORS,
+      useClass:AuthInterceptor,
+      multi:true 
+    },UserService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

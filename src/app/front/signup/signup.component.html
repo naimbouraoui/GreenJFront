@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="signup-form">
+        <form [formGroup]="signupForm" (ngSubmit)="handleSubmit()">
+          <mat-form-field appearance="outline">
+            <mat-label>First Name</mat-label>
+            <input matInput type="text" formControlName="firstname" required>
+          <mat-error *ngIf="signupForm.controls['firstname'].touched && signupForm.controls['firstname'].invalid">
+            <span *ngIf ="signupForm.controls['firstname']required">this field is mandatory</span>
+          </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Last Name</mat-label>
+            <input matInput type="text" formControlName="lastname" required>
+            <mat-error *ngIf="signupForm.controls['lastname'].touched && signupForm.controls['lastname'].invalid">
+              <span *ngIf ="signupForm.controls['lastname']required">this field is mandatory</span>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" formControlName="email" required>
+            <mat-error *ngIf="signupForm.controls['lastname'].touched && signupForm.controls['lastname'].invalid">
+              <span *ngIf ="signupForm.controls['lastname']required">this field is mandatory</span>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" formControlName="password" required>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Username</mat-label>
+            <input matInput type="text" formControlName="username" required>
+            <mat-error *ngIf="signupForm.controls['username'].touched && signupForm.controls['username'].errors?.['required']">Username is required</mat-error>
+          </mat-form-field>
+
+          <!-- Move the button to a new row -->
+          <div class="row mt-3">
+            <div class="col-md-12 text-center">
+              <button type="submit" class="btn btn-custom btn-signup">Sign Up</button>
+            </div>
+          </div>
+          
+        </form>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="signup-info" style="background-image: url('');">
+        <div style="display: flex; flex-direction: column; align-items: center;">
+          <h3 style="color: #32CD32;">Register for our service now!</h3>
+          <div class="paragraph-container">
+            <p>Join Green Journeys today and take a step towards a more sustainable future! With our user-friendly application, you can easily plan your travels and find eco-friendly transportation options that will help reduce your carbon footprint. Not only will you be making a positive impact on the environment, but you'll also have access to exclusive deals and discounts. So why wait? Sign up now and start your green journey today!</p>
+          </div>
+          <img src="../../../assets/img/join-us.png">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
