@@ -1,7 +1,6 @@
 import { Component, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { Page1Component } from './backoffice/page1/page1.component';
@@ -20,7 +19,8 @@ import { AccBookComponent } from './front/acc-book/acc-book.component';
 import { HeaderComponent } from './front/header/header.component';
 import { FooterComponent } from './front/footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgxUiLoaderModule } from 'ngx-ui-loader';
+import { PublicationComponent } from './front/publication/publication.component';
+import { CommentComponent } from './front/comment/comment.component';
 
 
 
@@ -65,6 +65,10 @@ export const appRouteList: Routes = [
   path: 'accbook',
   component: AccBookComponent
 },
+{
+  path: 'publications',
+  component: PublicationComponent
+},
   {
       path: '**',
       redirectTo: 'blog'
@@ -100,7 +104,9 @@ import {ReclamationFrontComponent} from "./front/reclamationFront/reclamationFro
     ReclamationComponent,
     NewActivityComponent,
     ActivityFrontComponent,
-    ReclamationFrontComponent
+    ReclamationFrontComponent,
+    PublicationComponent,
+    CommentComponent,
   ],
   imports: [
     BrowserModule, FormsModule,
@@ -108,9 +114,9 @@ import {ReclamationFrontComponent} from "./front/reclamationFront/reclamationFro
     HttpClientModule,
     RouterModule.forRoot(appRouteList),
     ReactiveFormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
-    NgxUiLoaderModule,
-    FormsModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

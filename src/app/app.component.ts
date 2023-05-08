@@ -1,4 +1,3 @@
-
 import { AccomodationService } from './services/Accomodation.service';
 import { Component, OnInit } from '@angular/core';
 
