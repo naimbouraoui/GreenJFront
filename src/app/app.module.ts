@@ -18,6 +18,9 @@ import { BlogComponent } from './front/blog/blog.component';
 import { BookComponent } from './front/book/book.component';
 import { AccBookComponent } from './front/acc-book/acc-book.component';
 import { HeaderComponent } from './front/header/header.component';
+import { FooterComponent } from './front/footer/footer.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxUiLoaderModule } from 'ngx-ui-loader';
 
 
 
@@ -64,7 +67,7 @@ export const appRouteList: Routes = [
 },
   {
       path: '**',
-      redirectTo: 'AccBookComponent'
+      redirectTo: 'blog'
   }
 ];
 
@@ -79,18 +82,19 @@ export const appRouteList: Routes = [
     AddRoomComponent,
     HomeComponent,
     BlogComponent,
-
+    FooterComponent,
     BookComponent,
     AccBookComponent,
     HeaderComponent,
- 
   ],
   imports: [
     BrowserModule, FormsModule,
     AppRoutingModule,
     HttpClientModule,
     RouterModule.forRoot(appRouteList),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    NgxUiLoaderModule
   ],
   providers: [],
   bootstrap: [AppComponent]
