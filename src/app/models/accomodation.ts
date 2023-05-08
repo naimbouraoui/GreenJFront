@@ -14,7 +14,7 @@ export class Accomodation {
   typeAcc!:TypeAccomodation
   description!:string
   amenities!:String;
-  Files! : File[];
+  Fileid!:number
   //Chambre!: Array<Chambre>;
   //Resrvation!:Array<Reservation>;
   //constructor(name:string,ville:string,typeAcc:TypeAccomodation,)

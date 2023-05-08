@@ -27,7 +27,7 @@ export class AccomodationService {
   }
   getListByNeeds(ville:any,datedebut:Date,datefin:Date,tyrooms:any):Observable<Accomodation[]>{
     const nom="DispoAccomodations";
-    return this.http.get<Accomodation[]>(`${this.baseUrl}/${nom}/${ville}/${datedebut}/${datefin}/${tyrooms}`)
+    return this.http.get<Accomodation[]>(`${this.baseUrl}//${ville}/${datedebut}/${datefin}/${tyrooms}`)
   }
   post_options = {
     method: 'POST',
@@ -42,7 +42,7 @@ export class AccomodationService {
 
   addAcc(formData:FormData): Observable<any> {
     console.log(formData);
-    return this.http.post(this.baseUrl+ '/add', formData);
+    return this.http.post(this.baseUrl+ '/add',formData);
 }
 getAccbyId(id:number):Observable<Accomodation>{
   return this.http.get<Accomodation>(`${this.baseUrl}/${id}`);
