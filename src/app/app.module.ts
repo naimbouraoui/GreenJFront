@@ -21,6 +21,13 @@ import { FooterComponent } from './front/footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PublicationComponent } from './front/publication/publication.component';
 import { CommentComponent } from './front/comment/comment.component';
+import {ActivityComponent} from "./backoffice/activity/activity.component";
+import {ReviewComponent} from "./backoffice/review/review.component";
+import {ReclamationComponent} from "./backoffice/reclamation/reclamation.component";
+import {NewActivityComponent} from "./backoffice/new-activity/new-activity.component";
+import {ActivityFrontComponent} from "./front/activityFront/activityFront.component";
+import {ReclamationFrontComponent} from "./front/reclamationFront/reclamationFront.component";
+
 
 
 
@@ -74,15 +81,6 @@ export const appRouteList: Routes = [
       redirectTo: 'blog'
   }
 ];
-import {ActivityComponent} from "./backoffice/activity/activity.component";
-import {ReviewComponent} from "./backoffice/review/review.component";
-import {ReclamationComponent} from "./backoffice/reclamation/reclamation.component";
-import {NewActivityComponent} from "./backoffice/new-activity/new-activity.component";
-import {ActivityFrontComponent} from "./front/activityFront/activityFront.component";
-import {ReclamationFrontComponent} from "./front/reclamationFront/reclamationFront.component";
-
-
-
 
 @NgModule({
   declarations: [
