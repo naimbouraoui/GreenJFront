@@ -70,6 +70,15 @@ export const appRouteList: Routes = [
       redirectTo: 'blog'
   }
 ];
+import {ActivityComponent} from "./backoffice/activity/activity.component";
+import {ReviewComponent} from "./backoffice/review/review.component";
+import {ReclamationComponent} from "./backoffice/reclamation/reclamation.component";
+import {NewActivityComponent} from "./backoffice/new-activity/new-activity.component";
+import {ActivityFrontComponent} from "./front/activityFront/activityFront.component";
+import {ReclamationFrontComponent} from "./front/reclamationFront/reclamationFront.component";
+
+
+
 
 @NgModule({
   declarations: [
@@ -86,6 +95,12 @@ export const appRouteList: Routes = [
     BookComponent,
     AccBookComponent,
     HeaderComponent,
+    ActivityComponent,
+    ReviewComponent,
+    ReclamationComponent,
+    NewActivityComponent,
+    ActivityFrontComponent,
+    ReclamationFrontComponent
   ],
   imports: [
     BrowserModule, FormsModule,
@@ -94,7 +109,8 @@ export const appRouteList: Routes = [
     RouterModule.forRoot(appRouteList),
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    NgxUiLoaderModule
+    NgxUiLoaderModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class FileService {
 
-  baseUrl = 'http://localhost:9091/File';
+  baseUrl = 'http://localhost:9090/File';
   storageUserAsStr: any = localStorage.getItem('currentUser')
   ? JSON.parse(localStorage.getItem('currentUser') || '{}')
   : null;
@@ -31,7 +31,7 @@ export class FileService {
     const formData : FormData = new FormData(); //Stores Key Value Pairs
     formData.append('file',file);
 
-    const req = new HttpRequest('POST', `${this.baseUrl}/upload`,formData, {
+    const req = new HttpRequest('POST', `${this.baseUrl}/accomodation/${AccId}`,formData, {
       reportProgress:true,
       responseType:'json'
     });
@@ -46,10 +46,6 @@ export class FileService {
   getAccomodationFiles(): Observable<any>
   {
     return this.httpClient.get(`${this.baseUrl}`)
-  }
-  getimagebyId(id:any): Observable<any>
-  {
-    return this.httpClient.get(`${this.baseUrl}/files/${id}`)
   }
 
 }

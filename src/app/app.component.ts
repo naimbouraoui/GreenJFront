@@ -16,23 +16,24 @@ export class AppComponent implements OnInit {
   btn3 = false;
 
   constructor(
-    private accomodationService: AccomodationService
+    //private accomodationService: AccomodationService
   ) {
 
   }
   ngOnInit(): void {
 
-    this.accomodationService.getList().subscribe(res => {
-       console.log(res);
+    //   //this.accomodationService.getList().subscribe(res => {
+    //      //console.log(res);
+    //
+    //    })
+    // }
 
-     })
-  }
-
-  showNext(i: any) {
-    if (i == 2) {
-      this.btn2 = true;
-    } else if (i == 3) {
-      this.btn3 = true;
+    // showNext(i: any) {
+    //   if (i == 2) {
+    //     this.btn2 = true;
+    //   } else if (i == 3) {
+    //     this.btn3 = true;
+    //   }
     }
-  }
+
 }

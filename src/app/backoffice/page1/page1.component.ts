@@ -1,4 +1,3 @@
-import { FileService } from 'src/app/services/file.service';
 import { Router } from '@angular/router';
 import { Accomodation } from './../../models/accomodation';
 import { AccomodationService } from './../../services/Accomodation.service';
@@ -27,19 +26,15 @@ export class Page1Component implements OnInit {
      { value: 'gym', label: 'Fitness center' },  { value: 'spa', label: 'Spa and wellness center' },
      { value: 'wifi', label: 'wifi' },{ value: 'sona', label: 'Sona' },{ value: 'bar', label: 'bar' }];
   selectedRadioButton: any;
-  file!:any
 
   constructor(
     private accomodationService: AccomodationService,
-    private fileService:FileService,
     private router:Router
   ) { }
 
   ngOnInit(): void {
     this.infoForm();
-    this.getImaById(1);
-    console.log(this.file);
-    return this.getAccomodations();
+    return this.getAccomodations()
   }
   infoForm() {
     this.fb = new FormGroup({
@@ -116,10 +111,5 @@ export class Page1Component implements OnInit {
   onSelect(event:any){
     this.ville1=event.target.value;
     this.fb.controls['ville'].setValue(event.target.value);
-  }
-  getImaById(id:number): void {
-    this.fileService.getimagebyId(id).subscribe((data: any) => {
-     this.file = data;
-     })
   }
 }
