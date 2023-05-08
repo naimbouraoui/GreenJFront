@@ -46,13 +46,13 @@ export class MessagingCenterComponent implements OnInit {
   createConversation(startIndex: number) {
     const loggedInUser = this.allAccounts[startIndex];
     const loggedInUserId = loggedInUser.accountId;
-    const userId = this.allAccounts[startIndex + 1].accountId;
+    const userId = this.allAccounts[startIndex + 3].accountId;
     const messages: MessageType[] = [];
     const newMessage: MessageType = {
       date: new Date().toString(),
       sender: loggedInUserId,
       type: 'text',
-      message: 'coucou ' + Math.random(),
+      message: 'coucou',
       mediaUrl: null!,
     };
     messages.push(newMessage);

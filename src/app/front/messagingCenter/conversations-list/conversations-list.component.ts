@@ -102,7 +102,6 @@ export class ConversationsListComponent implements OnInit {
   }
 
   hasUnreadMessages(conversation: AccountConversationType) {
-    console.log('%c test douran','color:blue', );
     if (
       conversation.unreadMessagesCount &&
       conversation.unreadMessagesCount > 0
