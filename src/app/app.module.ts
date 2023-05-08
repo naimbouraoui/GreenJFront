@@ -1,6 +1,7 @@
 import { Component, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { Page1Component } from './backoffice/page1/page1.component';
@@ -19,15 +20,7 @@ import { AccBookComponent } from './front/acc-book/acc-book.component';
 import { HeaderComponent } from './front/header/header.component';
 import { FooterComponent } from './front/footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { PublicationComponent } from './front/publication/publication.component';
-import { CommentComponent } from './front/comment/comment.component';
-import {ActivityComponent} from "./backoffice/activity/activity.component";
-import {ReviewComponent} from "./backoffice/review/review.component";
-import {ReclamationComponent} from "./backoffice/reclamation/reclamation.component";
-import {NewActivityComponent} from "./backoffice/new-activity/new-activity.component";
-import {ActivityFrontComponent} from "./front/activityFront/activityFront.component";
-import {ReclamationFrontComponent} from "./front/reclamationFront/reclamationFront.component";
-
+import { NgxUiLoaderModule } from 'ngx-ui-loader';
 
 
 
@@ -72,15 +65,20 @@ export const appRouteList: Routes = [
   path: 'accbook',
   component: AccBookComponent
 },
-{
-  path: 'publications',
-  component: PublicationComponent
-},
   {
       path: '**',
       redirectTo: 'blog'
   }
 ];
+import {ActivityComponent} from "./backoffice/activity/activity.component";
+import {ReviewComponent} from "./backoffice/review/review.component";
+import {ReclamationComponent} from "./backoffice/reclamation/reclamation.component";
+import {NewActivityComponent} from "./backoffice/new-activity/new-activity.component";
+import {ActivityFrontComponent} from "./front/activityFront/activityFront.component";
+import {ReclamationFrontComponent} from "./front/reclamationFront/reclamationFront.component";
+
+
+
 
 @NgModule({
   declarations: [
@@ -102,9 +100,7 @@ export const appRouteList: Routes = [
     ReclamationComponent,
     NewActivityComponent,
     ActivityFrontComponent,
-    ReclamationFrontComponent,
-    PublicationComponent,
-    CommentComponent,
+    ReclamationFrontComponent
   ],
   imports: [
     BrowserModule, FormsModule,
@@ -112,8 +108,11 @@ export const appRouteList: Routes = [
     HttpClientModule,
     RouterModule.forRoot(appRouteList),
     ReactiveFormsModule,
-    ReactiveFormsModule,
     BrowserAnimationsModule,
+    NgxUiLoaderModule,
+    RouterModule,
+    ReactiveFormsModule,
+    FormsModule
 
   ],
   providers: [],
