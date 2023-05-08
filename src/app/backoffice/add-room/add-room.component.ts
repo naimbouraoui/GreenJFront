@@ -18,13 +18,9 @@ export class AddRoomComponent implements OnInit {
   accomodation!:Accomodation;
   selectedRadioButton:any;
   value: number=0;
-<<<<<<< HEAD
-
-=======
   selectedFile!: File;
   imageUrl!: string
   onSelectFile: boolean=false;
->>>>>>> origin/houssem-branch
   constructor(private chambreService:ChambreService, private router:Router,private accomodationService:AccomodationService
   ) { }
 
@@ -43,10 +39,6 @@ export class AddRoomComponent implements OnInit {
      superfice: new FormControl(''),
      typech: new FormControl(''),
      accommodation: new FormControl(''),
-<<<<<<< HEAD
-   });
- }
-=======
      file:new FormControl(''),
    });
  }
@@ -60,14 +52,11 @@ export class AddRoomComponent implements OnInit {
     };
     reader.readAsDataURL(this.selectedFile);
 }
->>>>>>> origin/houssem-branch
   ajouterChambre() {
     console.log(this.value);
     this.addToFormGroup();
     console.log(this.accomodation);
     this.fb.controls['accommodation'].setValue(this.accomodation);
-<<<<<<< HEAD
-=======
     //const formData1 = new FormData();
     //formData1.append('file', this.selectedFile,this.selectedFile.name);
     //this.fb.controls['file'].setValue(formData1);
@@ -90,7 +79,6 @@ export class AddRoomComponent implements OnInit {
           //formData.append('description', this.fb.controls['accommodation.description'].value);
           //formData.append('ville', this.fb.controls['accommodation.ville'].value);
           //formData.append('amenities', this.fb.controls['accommodation.amenities'].value);
->>>>>>> origin/houssem-branch
     this.chambreService.addroom(this.fb.value).subscribe((data) => {
       this.router.navigate(['/rooms']);
     });

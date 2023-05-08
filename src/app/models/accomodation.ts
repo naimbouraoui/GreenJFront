@@ -14,11 +14,7 @@ export class Accomodation {
   typeAcc!:TypeAccomodation
   description!:string
   amenities!:String;
-<<<<<<< HEAD
-  Fileid!:number
-=======
   fileid!:number
->>>>>>> origin/houssem-branch
   //Chambre!: Array<Chambre>;
   //Resrvation!:Array<Reservation>;
   //constructor(name:string,ville:string,typeAcc:TypeAccomodation,)

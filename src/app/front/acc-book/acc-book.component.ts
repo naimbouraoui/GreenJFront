@@ -1,14 +1,8 @@
-<<<<<<< HEAD
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Accomodation } from 'src/app/models/accomodation';
-=======
 import { ChambreService } from './../../services/chambre.service';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Accomodation } from 'src/app/models/accomodation';
 import { Chambre } from 'src/app/models/chambre';
->>>>>>> origin/houssem-branch
 import { Typech } from 'src/app/models/typech';
 import { AccomodationService } from 'src/app/services/Accomodation.service';
 
@@ -20,20 +14,12 @@ import { AccomodationService } from 'src/app/services/Accomodation.service';
   '../../../assets/Front/reservation/lib/owlcarousel/assets/owl.carousel.min.css',
   '../../../assets/Front/reservation/lib/animate/animate.min.css',
   '../../../assets/Front/reservation/css/style.css',
-<<<<<<< HEAD
-  '../../../assets/Front/reservation/css/bootstrap.min.css']
-})
-export class AccBookComponent implements OnInit {
-
-  hotels: Array<Accomodation> = [];
-=======
   '../../../assets/Front/reservation/css/bootstrap.min.css'],
 })
 export class AccBookComponent implements OnInit {
   show:boolean=true;
   hotels: Array<Accomodation> = [];
   RoomsList: Array<Chambre> = [];
->>>>>>> origin/houssem-branch
   fb!:FormGroup
   AccomodationList: Array<Accomodation> = [];
   datedebut!:any;
@@ -41,12 +27,6 @@ export class AccBookComponent implements OnInit {
   ville!:string;
   tyrooms:Array<Typech>=[]
   inputCount: Array<number>=[0];
-<<<<<<< HEAD
-  constructor( private accomodationService: AccomodationService) { }
-
-  ngOnInit(): void {
-    return this.getAccomodations();
-=======
   i!:number;
   nbrChilds:Array<number>=[];
   nbenfants!:number;
@@ -60,7 +40,6 @@ export class AccBookComponent implements OnInit {
     return this.getAccomodations();
     this.show=true;
 
->>>>>>> origin/houssem-branch
   }
   range(n: any) {
     return Array.from({ length: n }, (_, i) => i);
@@ -104,9 +83,6 @@ export class AccBookComponent implements OnInit {
     this.datefin=event.target.value;
 
   }
-<<<<<<< HEAD
-  }
-=======
   getRoomsForReservation(ida:number,startDate:Date,endDate:Date,typeChambres:Array<Typech>):void{
     this.accomodationService.getRoomsForReservation(ida,startDate,endDate,typeChambres).subscribe((data: Chambre[]) => {
       console.log("roomsList:",data);
@@ -140,4 +116,3 @@ export class AccBookComponent implements OnInit {
   });
 }
 }
->>>>>>> origin/houssem-branch

@@ -5,11 +5,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Reservation } from '../models/reservation';
 import { FormGroup } from '@angular/forms';
-<<<<<<< HEAD
-=======
 import { Chambre } from '../models/chambre';
 import { Typech } from '../models/typech';
->>>>>>> origin/houssem-branch
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -32,11 +29,7 @@ export class AccomodationService {
   }
   getListByNeeds(ville:any,datedebut:Date,datefin:Date,tyrooms:any):Observable<Accomodation[]>{
     const nom="DispoAccomodations";
-<<<<<<< HEAD
-    return this.http.get<Accomodation[]>(`${this.baseUrl}//${ville}/${datedebut}/${datefin}/${tyrooms}`)
-=======
     return this.http.get<Accomodation[]>(`${this.baseUrl}/${nom}/${ville}/${datedebut}/${datefin}/${tyrooms}`)
->>>>>>> origin/houssem-branch
   }
   post_options = {
     method: 'POST',
@@ -59,10 +52,7 @@ getAccbyId(id:number):Observable<Accomodation>{
 modifierAcc(formData:FormData): Observable<any> {
   return this.http.put(this.baseUrl, formData);
 }
-<<<<<<< HEAD
-=======
 getRoomsForReservation(ida:number,DateDeb:Date,DateFin:Date, typeschambres:Array<Typech>):Observable<Chambre[]>{
   return this.http.get<Chambre[]>(`${this.baseUrl}/Disporooms/${ida}/${DateDeb}/${DateFin}/${typeschambres}`);
 }
->>>>>>> origin/houssem-branch
 }

@@ -12,8 +12,5 @@ export class Chambre {
     accommodation!: Accomodation;
     idaccomodation:any;
     nameacc:any
-<<<<<<< HEAD
-=======
     fileid!:number
->>>>>>> origin/houssem-branch
 }

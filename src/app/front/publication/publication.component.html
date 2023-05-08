@@ -31,7 +31,7 @@
                           
                           <div *ngIf="showAddCommentForm">
                               <form #commentForm="ngForm" (ngSubmit)="addCommentToPublication(publication.id,newCommentContent)">
-                                <input type="hidden" name="publicationId" [value]="showAddCommentForm" >
+                                <input type="hidden" name="publicationId" [value]="showAddCommentForm" >    
                                   <textarea name="content" [(ngModel)]="newCommentContent" required></textarea>
                                   <button type="submit">Add</button>
                               </form>

@@ -1,9 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-<<<<<<< HEAD
-
-const routes: Routes = [];
-=======
 import {ActivityComponent} from "./backoffice/activity/activity.component";
 import {NewActivityComponent} from "./backoffice/new-activity/new-activity.component";
 import {ReviewComponent} from "./backoffice/review/review.component";
@@ -61,7 +57,6 @@ export const routes: Routes = [
 
 ];
 
->>>>>>> origin/houssem-branch
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

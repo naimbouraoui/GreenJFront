@@ -25,13 +25,9 @@ export class RoomsComponent implements OnInit {
   selectedRadioButton!:any
   radioInput:any
   formGroupValue:any
-<<<<<<< HEAD
-
-=======
   selectedFile!: File;
   imageUrl!: string
   onSelectFile: boolean=false;
->>>>>>> origin/houssem-branch
   constructor(private chambreService:ChambreService,private router: Router) { }
 
   ngOnInit(): void {
@@ -64,11 +60,6 @@ this.chambreService.getChById(id).subscribe((data: Chambre) => {
   this.fb.setValue(this.chambre);
   })
 }
-<<<<<<< HEAD
- modifierChambre() {
-  console.log(this.fb.value);
-  this.addToFormGroup();
-=======
 onSelectedFile(event : any){
   this.selectedFile=event.target.files[0];
   this.onSelectFile = true;
@@ -101,7 +92,6 @@ onSelectedFile(event : any){
       formData.append('description', this.fb.controls['description'].value);
       formData.append('ville', this.fb.controls['ville'].value);
       formData.append('amenities', this.fb.controls['amenities'].value);
->>>>>>> origin/houssem-branch
   this.chambreService.addCh(this.fb.value).subscribe((data) => {
     this.router.navigate(["/rooms"]);
   });
