@@ -1,7 +1,6 @@
 import { Component, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { Page1Component } from './backoffice/page1/page1.component';
@@ -66,14 +65,14 @@ export const appRouteList: Routes = [
   path: 'accbook',
   component: AccBookComponent
 },
+{
+  path: 'publications',
+  component: PublicationComponent
+},
   {
       path: '**',
       redirectTo: 'blog'
-  },
-  {
-    path: 'publications',
-    component: PublicationComponent
-  },
+  }
 ];
 import {ActivityComponent} from "./backoffice/activity/activity.component";
 import {ReviewComponent} from "./backoffice/review/review.component";
@@ -117,6 +116,7 @@ import {ReclamationFrontComponent} from "./front/reclamationFront/reclamationFro
     ReactiveFormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

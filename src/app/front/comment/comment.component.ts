@@ -76,7 +76,4 @@ export class CommentComponent implements OnInit {
       this.comments.push(comment);
     });
   }
-  
-  
-
 }

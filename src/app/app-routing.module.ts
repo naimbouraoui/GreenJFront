@@ -5,20 +5,11 @@ import {NewActivityComponent} from "./backoffice/new-activity/new-activity.compo
 import {ReviewComponent} from "./backoffice/review/review.component";
 import {ReclamationComponent} from "./backoffice/reclamation/reclamation.component";
 import {BlogComponent} from "./front/blog/blog.component";
-import {HeaderComponent} from "./front/header/header.component";
 import {ReclamationFrontComponent} from "./front/reclamationFront/reclamationFront.component";
 import {ActivityFrontComponent} from "./front/activityFront/activityFront.component";
 
 
 export const routes: Routes = [
-  {
-    path : 'blog',
-    component: BlogComponent
-  },
-  {
-    path : 'header',
-    component: HeaderComponent
-  },
   {
     path : 'Activities',
     component: ActivityComponent
@@ -36,10 +27,6 @@ export const routes: Routes = [
     component: ReclamationComponent
   },
   {
-    path: '**',
-    redirectTo: 'IndexComponent'
-  },
-  {
     path: 'dash',
     component: BlogComponent
   },
@@ -51,10 +38,6 @@ export const routes: Routes = [
     path: 'acFront',
     component: ActivityFrontComponent
   }
-
-
-
-
 ];
 
 
