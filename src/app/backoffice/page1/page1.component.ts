@@ -53,7 +53,7 @@ export class Page1Component implements OnInit {
      ville:new FormControl('',Validators.required),
      //amenities: new FormArray([])
      amenities: new FormControl(''),
-     Files:new FormArray([])
+     fileid:new FormControl(''),
    });
   }
   getAccomodations(): void {
@@ -68,13 +68,17 @@ export class Page1Component implements OnInit {
     })
   }
   onShow() {
-      this.show = true;
+    if (this.show == true) {
+      this.show = false
+    } else {
+      this.show = true
+    }
   }
   getAccById(id:number): void {
     this.accomodationService.getAccbyId(id).subscribe((data: Accomodation) => {
      this.accomodation = data;
      this.onShow();
-     console.log(this.accomodation);
+     console.log("acc",this.accomodation);
      this.fb.setValue(this.accomodation);
      })
   }

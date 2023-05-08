@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { ChambreService } from './../../services/chambre.service';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Accomodation } from 'src/app/models/accomodation';
+import { Chambre } from 'src/app/models/chambre';
 import { Typech } from 'src/app/models/typech';
 import { AccomodationService } from 'src/app/services/Accomodation.service';
 
@@ -12,11 +14,12 @@ import { AccomodationService } from 'src/app/services/Accomodation.service';
   '../../../assets/Front/reservation/lib/owlcarousel/assets/owl.carousel.min.css',
   '../../../assets/Front/reservation/lib/animate/animate.min.css',
   '../../../assets/Front/reservation/css/style.css',
-  '../../../assets/Front/reservation/css/bootstrap.min.css']
+  '../../../assets/Front/reservation/css/bootstrap.min.css'],
 })
 export class AccBookComponent implements OnInit {
-
+  show:boolean=true;
   hotels: Array<Accomodation> = [];
+  RoomsList: Array<Chambre> = [];
   fb!:FormGroup
   AccomodationList: Array<Accomodation> = [];
   datedebut!:any;
@@ -24,10 +27,19 @@ export class AccBookComponent implements OnInit {
   ville!:string;
   tyrooms:Array<Typech>=[]
   inputCount: Array<number>=[0];
-  constructor( private accomodationService: AccomodationService) { }
+  i!:number;
+  nbrChilds:Array<number>=[];
+  nbenfants!:number;
+  pention:any;
+  price!:any
+  show1:boolean=false;
+  constructor( private accomodationService: AccomodationService,private chambreService:ChambreService) { }
 
   ngOnInit(): void {
+    this.i=0;
     return this.getAccomodations();
+    this.show=true;
+
   }
   range(n: any) {
     return Array.from({ length: n }, (_, i) => i);
@@ -71,4 +83,36 @@ export class AccBookComponent implements OnInit {
     this.datefin=event.target.value;
 
   }
+  getRoomsForReservation(ida:number,startDate:Date,endDate:Date,typeChambres:Array<Typech>):void{
+    this.accomodationService.getRoomsForReservation(ida,startDate,endDate,typeChambres).subscribe((data: Chambre[]) => {
+      console.log("roomsList:",data);
+      this.RoomsList = data;
+      this.show=false;
+  });
   }
+  onnbrChild(event: any) {
+    this.nbenfants=event.target.value;
+  }
+  addChild(i:any){
+    this.nbrChilds[0]=this.nbenfants;
+  }
+  onPentionSelect(event:any){
+    this.pention=event.target.value;
+  }
+  getRoomsPrice(nbchilds:Array<number>,Option:string){
+    const formData : FormData = new FormData();
+    for (const room of this.RoomsList) {
+      formData.append('idCH', room.idCH.toString());
+      formData.append('nomCH', room.nomCH);
+      formData.append('capacite', room.capacite.toString());
+      formData.append('prixComplet', room.prixComplet.toString());
+      formData.append('prixDemiPortion', room.prixDemiPortion.toString());
+      formData.append('reductionEnfant', room.reductionEnfant.toString());
+      formData.append('superfice', room.superfice.toString());
+      formData.append('typech', room.typech.toString());
+    }
+    this.chambreService.RoomsPrice(formData,nbchilds,Option).subscribe((data: any) => {
+      this.price = data;
+  });
+}
+}

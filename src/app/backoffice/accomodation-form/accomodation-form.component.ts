@@ -31,17 +31,14 @@ export class AccomodationFormComponent implements OnInit {
    amenitiesList = [  { value: 'pool', label: 'Swimming pool' },
      { value: 'gym', label: 'Fitness center' },  { value: 'spa', label: 'Spa and wellness center' },
      { value: 'wifi', label: 'wifi' },{ value: 'sona', label: 'Sona' },{ value: 'bar', label: 'bar' }];
-     selectedFile?: File;
+     selectedFile!: File;
 	   currentFile?: File;
-	   progress : any[] = [];
-	   message:string[] = [];
+     imageUrl!: string
 
-	previews: string[] = [];
 	fileInfos?: Observable<any>;
 
 	fileUrl : any; //File url to upload
 	selected! : FileList;
-
 
   constructor(
     public accomodationService:AccomodationService,
@@ -108,6 +105,11 @@ export class AccomodationFormComponent implements OnInit {
     this.selectedFile=event.target.files[0];
     this.onSelectFile = true;
     console.log((this.selectedFile))
+    const reader = new FileReader();
+      reader.onload = (e) => {
+        this.imageUrl = e.target?.result as string;
+      };
+      reader.readAsDataURL(this.selectedFile);
   }
   addAccomodation() {
     console.log(this.fb.value);
@@ -117,8 +119,15 @@ export class AccomodationFormComponent implements OnInit {
         console.log(res);
       });
       const formData : FormData = new FormData(); //Stores Key Value Pairs
-      //formData.append('file',this.selectedFile);
-      formData.append('accomodation', this.fb.value);
+      formData.append('file',this.selectedFile);
+      formData.append('name', this.fb.controls['name'].value);
+      formData.append('addresse', this.fb.controls['addresse'].value);
+      formData.append('stars', this.fb.controls['stars'].value);
+      formData.append('typeAcc', this.fb.controls['typeAcc'].value);
+      formData.append('email', this.fb.controls['email'].value);
+      formData.append('description', this.fb.controls['description'].value);
+      formData.append('ville', this.fb.controls['ville'].value);
+      formData.append('amenities', this.fb.controls['amenities'].value);
       this.accomodationService.addAcc(formData).subscribe(() => this.goBack());
   }
 }

@@ -12,4 +12,5 @@ export class Chambre {
     accommodation!: Accomodation;
     idaccomodation:any;
     nameacc:any
+    fileid!:number
 }

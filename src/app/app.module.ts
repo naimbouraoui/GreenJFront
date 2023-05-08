@@ -15,21 +15,16 @@ import { AddRoomComponent } from './backoffice/add-room/add-room.component';
 import { HomeComponent } from './backoffice/home/home.component';
 import { FormsModule } from '@angular/forms';
 import { BlogComponent } from './front/blog/blog.component';
-import { IndexComponent } from './front/index/index.component';
 import { BookComponent } from './front/book/book.component';
 import { AccBookComponent } from './front/acc-book/acc-book.component';
 import { HeaderComponent } from './front/header/header.component';
-import { RoomdetailsComponent } from './front/roomdetails/roomdetails.component';
+import { FooterComponent } from './front/footer/footer.component';
 
 
 export const appRouteList: Routes = [
   {
     path: 'home',
     component: HomeComponent
-},
-{
-  path: 'index',
-  component: IndexComponent
 },
   {
       path: 'page1',
@@ -69,7 +64,7 @@ export const appRouteList: Routes = [
 },
   {
       path: '**',
-      redirectTo: 'AccBookComponent'
+      redirectTo: 'blog'
   }
 ];
 
@@ -84,11 +79,10 @@ export const appRouteList: Routes = [
     AddRoomComponent,
     HomeComponent,
     BlogComponent,
-    IndexComponent,
     BookComponent,
     AccBookComponent,
     HeaderComponent,
-    RoomdetailsComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule, FormsModule,

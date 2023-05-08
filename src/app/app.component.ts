@@ -1,3 +1,4 @@
+
 import { AccomodationService } from './services/Accomodation.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -6,9 +7,10 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
+
   title = 'greenj';
   btn2 = false;
   btn3 = false;

@@ -41,4 +41,7 @@ deleteChambre(id: number): Observable<boolean> {
   const url = `${this.baseUrl}/${id}`;
   return this.http.delete<boolean>(url);
 }
+RoomsPrice(formData:FormData,nbchilds:Array<number>,Option:string):Observable<any>{
+  return this.http.post<any>(`${this.baseUrl}/prix/${nbchilds}/${Option}`,formData);
+}
 }
