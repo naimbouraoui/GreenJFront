@@ -2,3 +2,32 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import 'ngx-toastr/toastr';
+.text_grey {
+    color: #7E92A2 !important;
+    --color: #7E92A2 !important;
+}
+.text_blue {
+    color: #092C4C !important;
+    --color: #092C4C !important;
+}
+.noMargins {
+    margin: 0 !important;
+}
+
+
+.margin_top05 {
+    margin-top: 5px !important;
+}
+.margin_bottom05{
+    margin-bottom: 5px !important;
+}
+.mediumMonserrat16 {
+    /* font-family: MontserratMedium !important; */
+    font-size: 16px !important;
+}
+.borderRadius18px {
+    border-radius: 18px !important;
+    --border-radius: 18px !important;
+}

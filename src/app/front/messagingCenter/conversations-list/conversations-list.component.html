@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="grid">
+        <div class="row" style="margin-top: 20px;" *ngFor="let conversation of conversations"
+            (click)="navigateToConversation(conversation)">
+            <div class="col-10">
+                <div [ngClass]=hasUnreadMessages(conversation)>
+                    <div>
+                        <h2 class="mediumMonserrat16 text_blue" *ngIf="conversation.interlocutor">
+                            {{conversation.interlocutor.accountFlatName}}</h2>
+                        <p class="mediumMonserrat16 text_grey">{{conversation.listDisplayMessage}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-2" style="margin: auto;">
+                <div
+                    [ngClass]="conversation.unreadMessagesCount && conversation.unreadMessagesCount > 0 ? 'bigMessageCount' : 'smallMessageCount'">
+                    <h4 class="mediumMonserrat16"
+                        *ngIf="conversation.unreadMessagesCount && conversation.unreadMessagesCount > 0">
+                        {{conversation.unreadMessagesCount}}
+                    </h4>
+                    <span class="mediumMonserrat16 text_grey">{{conversation.lastMessageDate | DateFormat}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
