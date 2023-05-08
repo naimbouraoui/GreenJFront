@@ -1,0 +1,120 @@
+<head>
+  <meta charset="utf-8">
+  <title>Hotelier - Hotel HTML Template</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+
+  <!-- Favicon -->
+  <link href="../../../assets/Front/reservation/img/favicon.ico" rel="icon">
+
+  <!-- Google Web Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Icon Font Stylesheet -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Libraries Stylesheet -->
+  <link href="../../../assets/Front/reservation/lib/animate/animate.min.css" rel="stylesheet">
+  <link href="../../../assets/Front/reservation/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="../../../assets/Front/reservation/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+  <!-- Customized Bootstrap Stylesheet -->
+  <link href="../../../assets/Front/reservation/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Template Stylesheet -->
+  <link href="../../../assets/Front/reservation/css/style.css" rel="stylesheet">
+</head>
+<app-header></app-header>
+<body>
+
+   <div id="booking-form" class=" fixed-top end-0 d-flex align-items- table-responsive" style="padding-top: 100px;padding-left: 20px;">
+    <table class=" table-hover table-stripted" >
+      <div class="bg-dark " style="padding: 40px;padding-top: 30px; padding-left: 20px; max-height: 500px;overflow-y: scroll;" >
+        <form >
+          <div >
+            <div class="form-group " style="margin-bottom: 15px;">
+            <label for="start-date">Start Date:</label>
+            <input type="date" id="start-date" class="form-control" (change)="onDateChange($event)">
+            </div>
+              <div class="form-group " style="margin-bottom: 15px;">
+                <label for="end-date">End Date:</label>
+                <input type="date" id="end-date" class="form-control"  [(ngModel)]="datefin" (change)="onDatefinChange($event)" >
+              </div>
+              <div class="form-group " style="margin-bottom: 15px;">
+                <label>City</label>
+                  <select class="form-select" id="city"  aria-label="Example select with button addon" (change)="onCitySelect($event)" >
+                    <option value="null">select city</option>
+                    <option value="sousse">sousse</option>
+                    <option value="tunis">tunis</option>
+                    <option value="ariana">ariana</option>
+                    <option value="kasserine">kasserine</option>
+                    <option value="mahdia">mahdia</option>
+                  </select>
+              </div>
+          </div>
+          <div class="form-group ">
+            <label for="room-type">Room Type:</label>
+            <div *ngFor="let i of inputCount" class=" align-items-center" style="margin-bottom: 15px;">
+              <select id="room-type" class="form-select" (change)="onRoomSelect($event,i)">
+                <option value="null">select a room type</option>
+                <option value="SIMPLE">Single</option>
+                <option value="DOUBLE">Double</option>
+                <option value="TRIPLE">Triple</option>
+                <option value="QUADRIPLE">Quadruple</option>
+                <option value="FAMILIALE">Familiale</option>
+              </select>
+            <button type="button" (click)="addInput()" class="btn btn-danger btn-sm">+</button>
+            <button type="button" class="btn btn-light btn-sm" (click)="removeRoomOption(i)">-</button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-2">
+              <button class="btn btn-primary" (click)="getAccomodationsByneeds(tyrooms,datedebut,datefin,ville)">Submit</button>
+            </div>
+          </div>
+          </form>
+
+    </div>
+  </table>
+  </div>
+
+  <div class="row text-center d-flex "  style="padding-left: 400px;padding-top: 100px;">
+    <div *ngFor="let accomodation1 of AccomodationList" class="col-lg-6 wow fadeInUp "style="width: 350px;" data-wow-delay="0.1s">
+        <div class="room-item shadow rounded overflow-hidden" style="height:450px; margin-top: 30px;" >
+            <div class="position-relative">
+                <img class="img-fluid" src="../../../assets/Front/reservation/img/room-1.jpg" alt="">
+                <small class="position-absolute start-0 top-100 translate-middle-y bg-primary text-white rounded py-1 px-3 ms-4">{{ accomodation1.typeAcc }}</small>
+            </div>
+            <div class="p-4 mt-2 ">
+                <div class="d-flex justify-content-between mb-3">
+                    <h5 class="mb-0">{{ accomodation1.name }}</h5>
+                    <div class="ps-2"  *ngFor="let a of range(accomodation1.stars)">
+                        <small class="fa fa-star text-primary"></small>
+                    </div>
+                </div>
+
+                <div class="d-flex flex-wrap flex-shrink-0 mb-3">
+                  <div *ngFor="let amenity of accomodation1.amenities.split(' ')">
+                      <small *ngIf="amenity == 'gym'" class="border-end me-1 pe-3"><i class="fa fa-dumbbell text-primary me-2"></i>Fitness center</small>
+                      <small *ngIf="amenity == 'pool'" class="border-end me-1 pe-3"><i class="fa fa-swimmer text-primary me-2"></i>Swimming pool</small>
+                      <small *ngIf="amenity == 'wifi'" class="border-end me-1 pe-3"><i class="fa fa-wifi text-primary me-2"></i>Wifi</small>
+                      <small *ngIf="amenity == 'bar'" class="border-end me-1 pe-3"><i class="fa fa-wifi text-primary me-2"></i>Bar</small>
+                      <small *ngIf="amenity == 'sona'" class="border-end me-1 pe-3"><i class="fa fa-bath text-primary me-2"></i>Sona</small>
+                      <small *ngIf="amenity == 'spa'" class="border-end me-1 pe-3"><i class="fa fa-bed text-primary me-2"></i> spa and wellness center</small>
+                    </div>
+                </div>
+                <p class="text-body mb-3 mt-auto">{{ accomodation1.addresse }}</p>
+                <div class="d-flex justify-content-between mb-3 " >
+                  <a class="btn btn-sm btn-dark rounded py-2 px-4 " href="">Book Now</a>
+              </div>
+            </div>
+
+        </div>
+    </div>
+  </div>
+
+</body>
