@@ -1,0 +1,68 @@
+<app-sidenav></app-sidenav>
+<form class="w-50 p-3 float-end text-center">
+  <br>
+  <p class="fs-2 text-center">Event Registration Form</p>
+  <hr>
+  <!-- 2 column grid layout with text inputs for the first and last names -->
+  <div class="row mb-4 ">
+    <div class="col ">
+      <div class="form-outline row mb-4  ">
+        <div  class="col-md-4">
+            <label class="form-label" for="dateDebutEvent">Start Date</label>
+        </div>
+        <div class="col-md-8">
+            <div class="form-outline">
+                <input  #startDate type="date" id="dateDebutEvent" class="form-control" >
+            </div>
+        </div>
+      </div>
+      <div class="form-outline row mb-4  ">
+        <div  class="col-md-4">
+            <label class="form-label" for="dateFinEvent">End Date</label>
+        </div>
+        <div class="col-md-8">
+            <div class="form-outline">
+                <input #endDate type="date" id="dateFinEvent" class="form-control" >
+            </div>
+        </div>
+      </div>
+      <div class="form-outline row mb-4  ">
+        <div  class="col-md-4">
+            <label class="form-label" for="regionEvent">Region</label>
+        </div>
+        <div class="col-md-8">
+            <div class="form-outline">
+                <input #region type="text" id="regionEvent" class="form-control" >
+            </div>
+        </div>
+      </div>
+      <div class="form-outline row mb-4  ">
+        <div  class="col-md-4">
+            <label class="form-label" for="nomEvent">Name</label>
+        </div>
+        <div class="col-md-8">
+            <div class="form-outline">
+                <input #name type="text" id="nomEvent" class="form-control" >
+            </div>
+        </div>
+      </div>
+      <div class="form-outline row mb-4  ">
+        <div  class="col-md-4">
+            <label class="form-label" for="descriptionEvent">Description</label>
+        </div>
+        <div class="col-md-8">
+            <div class="form-outline">
+                <input #description type="text" id="descriptionEvent" class="form-control" >
+            </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <br>
+  <br>
+
+  <button type="submit" class="btn btn-primary btn-block mb-4"  (click)="submit()">{{btnText}}</button>
+</form>

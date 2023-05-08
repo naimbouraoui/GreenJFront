@@ -21,6 +21,12 @@ import { FooterComponent } from './front/footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PublicationComponent } from './front/publication/publication.component';
 import { CommentComponent } from './front/comment/comment.component';
+import { EventComponent } from './backoffice/event/event.component';
+import { EventFormComponent } from './backoffice/event-form/event-form.component';
+import { TransportComponent } from './backoffice/transport/transport.component';
+import { TransportFormComponent } from './backoffice/transport-form/transport-form.component';
+import { EventListComponent } from './front/event-list/event-list.component';
+import { EventParticipateTransportComponent } from './front/event-participate-transport/event-participate-transport.component';
 
 
 
@@ -69,6 +75,31 @@ export const appRouteList: Routes = [
   path: 'publications',
   component: PublicationComponent
 },
+{
+  path: 'event',
+  component: EventComponent
+},
+{
+  path: 'eventForm',
+  component: EventFormComponent
+},
+{
+  path: 'transport',
+  component: TransportComponent
+},
+{
+  path: 'transportForm',
+  component: TransportFormComponent
+},
+{
+  path: 'eventList',
+  component: EventListComponent
+},
+{
+  path: 'participate',
+  component: EventParticipateTransportComponent
+},
+
   {
       path: '**',
       redirectTo: 'blog'
