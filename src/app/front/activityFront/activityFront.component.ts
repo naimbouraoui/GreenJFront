@@ -17,8 +17,7 @@ export class ActivityFrontComponent implements OnInit {
   result: boolean = false;
 
   constructor(
-    private activityService: ActivityService ,
-    private reviewService : ReviewComponent
+    private activityService: ActivityService 
   ) { }
 
   ngOnInit(): void {
