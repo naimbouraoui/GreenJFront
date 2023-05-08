@@ -120,6 +120,7 @@
                         </div>
                       </div>
                     </div>
+<<<<<<< HEAD
 
                     <div class="row">
                     <div class="col-md-6 pr-1">
@@ -128,6 +129,26 @@
                       <input class="form-control" type="file" id="formFileMultiple" multiple>
                       </div>
                     </div>
+=======
+                    <div class="row">
+                      <div class="col-8">
+                        <label class="btn btn-default p-0" ><span *ngIf="onSelectFile">{{selectedFile?.name}}</span>
+                          <input type="file" accept="*"  (change)="onSelectedFile($event)" id="name"/>
+                        </label>
+                      </div>
+
+                      <div class="col-4">
+                        <button
+                          class="btn btn-success btn-sm"
+                          [disabled]="!selectedFile"
+                          (click)="ajouterChambre()">
+                          Upload
+                        </button>
+                      </div>
+                    </div>
+                    <div *ngIf="imageUrl">
+                      <img [src]="imageUrl" alt="Selected image" style="width: 600px;" />
+>>>>>>> origin/houssem-branch
                     </div>
                   <button type="submit"  class="btn btn-primary" >Save changes</button>
                 </form>

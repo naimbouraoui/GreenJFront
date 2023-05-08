@@ -1,0 +1,21 @@
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.accommodations,
+.form {
+  display: inline-block;
+  width: 50%;
+  box-sizing: border-box;
+  padding: 10px;
+}
+/*
+@media (max-width: 767px) {
+  .accommodations{
+    width:50%
+  }
+  .form {
+    width: 0;
+  }
+}*/

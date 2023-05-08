@@ -25,7 +25,13 @@ export class RoomsComponent implements OnInit {
   selectedRadioButton!:any
   radioInput:any
   formGroupValue:any
+<<<<<<< HEAD
 
+=======
+  selectedFile!: File;
+  imageUrl!: string
+  onSelectFile: boolean=false;
+>>>>>>> origin/houssem-branch
   constructor(private chambreService:ChambreService,private router: Router) { }
 
   ngOnInit(): void {
@@ -58,9 +64,44 @@ this.chambreService.getChById(id).subscribe((data: Chambre) => {
   this.fb.setValue(this.chambre);
   })
 }
+<<<<<<< HEAD
  modifierChambre() {
   console.log(this.fb.value);
   this.addToFormGroup();
+=======
+onSelectedFile(event : any){
+  this.selectedFile=event.target.files[0];
+  this.onSelectFile = true;
+  console.log((this.selectedFile))
+  const reader = new FileReader();
+    reader.onload = (e) => {
+      this.imageUrl = e.target?.result as string;
+    };
+    reader.readAsDataURL(this.selectedFile);
+}
+ modifierChambre() {
+  console.log(this.fb.value);
+  this.addToFormGroup();
+  const formData : FormData = new FormData();
+  formData.append('file',this.selectedFile);
+  formData.append('nomCH', this.fb.controls['nomCH'].value);
+  formData.append('capacite', this.fb.controls['capacite'].value);
+  formData.append('reductionEnfant', this.fb.controls['reductionEnfant'].value);
+  formData.append('prixComplet', this.fb.controls['prixComplet'].value);
+  formData.append('prixDemiPortion', this.fb.controls['prixDemiPortion'].value);
+  formData.append('superfice', this.fb.controls['superfice'].value);
+  formData.append('typech', this.fb.controls['typech'].value);
+  //formData.append('accommodation', this.fb.controls['accommodation'].value);
+  formData.append('idAccomodation', this.fb.controls['idAccomodation'].value);
+  formData.append('name', this.fb.controls['name'].value);
+      formData.append('addresse', this.fb.controls['addresse'].value);
+      formData.append('stars', this.fb.controls['stars'].value);
+      formData.append('typeAcc', this.fb.controls['typeAcc'].value);
+      formData.append('email', this.fb.controls['email'].value);
+      formData.append('description', this.fb.controls['description'].value);
+      formData.append('ville', this.fb.controls['ville'].value);
+      formData.append('amenities', this.fb.controls['amenities'].value);
+>>>>>>> origin/houssem-branch
   this.chambreService.addCh(this.fb.value).subscribe((data) => {
     this.router.navigate(["/rooms"]);
   });

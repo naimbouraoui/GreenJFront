@@ -15,23 +15,20 @@ import { AddRoomComponent } from './backoffice/add-room/add-room.component';
 import { HomeComponent } from './backoffice/home/home.component';
 import { FormsModule } from '@angular/forms';
 import { BlogComponent } from './front/blog/blog.component';
-import { IndexComponent } from './front/index/index.component';
 import { BookComponent } from './front/book/book.component';
 import { AccBookComponent } from './front/acc-book/acc-book.component';
 import { HeaderComponent } from './front/header/header.component';
-import { RoomdetailsComponent } from './front/roomdetails/roomdetails.component';
+import { FooterComponent } from './front/footer/footer.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PublicationComponent } from './front/publication/publication.component';
 import { CommentComponent } from './front/comment/comment.component';
+
 
 
 export const appRouteList: Routes = [
   {
     path: 'home',
     component: HomeComponent
-},
-{
-  path: 'index',
-  component: IndexComponent
 },
   {
       path: 'page1',
@@ -69,15 +66,24 @@ export const appRouteList: Routes = [
   path: 'accbook',
   component: AccBookComponent
 },
-{
-  path: 'publications',
-  component: PublicationComponent
-},
   {
       path: '**',
-      redirectTo: 'AccBookComponent'
-  }
+      redirectTo: 'blog'
+  },
+  {
+    path: 'publications',
+    component: PublicationComponent
+  },
 ];
+import {ActivityComponent} from "./backoffice/activity/activity.component";
+import {ReviewComponent} from "./backoffice/review/review.component";
+import {ReclamationComponent} from "./backoffice/reclamation/reclamation.component";
+import {NewActivityComponent} from "./backoffice/new-activity/new-activity.component";
+import {ActivityFrontComponent} from "./front/activityFront/activityFront.component";
+import {ReclamationFrontComponent} from "./front/reclamationFront/reclamationFront.component";
+
+
+
 
 @NgModule({
   declarations: [
@@ -90,11 +96,16 @@ export const appRouteList: Routes = [
     AddRoomComponent,
     HomeComponent,
     BlogComponent,
-    IndexComponent,
+    FooterComponent,
     BookComponent,
     AccBookComponent,
     HeaderComponent,
-    RoomdetailsComponent,
+    ActivityComponent,
+    ReviewComponent,
+    ReclamationComponent,
+    NewActivityComponent,
+    ActivityFrontComponent,
+    ReclamationFrontComponent,
     PublicationComponent,
     CommentComponent,
   ],
@@ -103,7 +114,9 @@ export const appRouteList: Routes = [
     AppRoutingModule,
     HttpClientModule,
     RouterModule.forRoot(appRouteList),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

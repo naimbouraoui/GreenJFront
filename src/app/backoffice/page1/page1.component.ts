@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 import { FileService } from 'src/app/services/file.service';
+=======
+>>>>>>> origin/houssem-branch
 import { Router } from '@angular/router';
 import { Accomodation } from './../../models/accomodation';
 import { AccomodationService } from './../../services/Accomodation.service';
@@ -27,19 +30,29 @@ export class Page1Component implements OnInit {
      { value: 'gym', label: 'Fitness center' },  { value: 'spa', label: 'Spa and wellness center' },
      { value: 'wifi', label: 'wifi' },{ value: 'sona', label: 'Sona' },{ value: 'bar', label: 'bar' }];
   selectedRadioButton: any;
+<<<<<<< HEAD
   file!:any
 
   constructor(
     private accomodationService: AccomodationService,
     private fileService:FileService,
+=======
+
+  constructor(
+    private accomodationService: AccomodationService,
+>>>>>>> origin/houssem-branch
     private router:Router
   ) { }
 
   ngOnInit(): void {
     this.infoForm();
+<<<<<<< HEAD
     this.getImaById(1);
     console.log(this.file);
     return this.getAccomodations();
+=======
+    return this.getAccomodations()
+>>>>>>> origin/houssem-branch
   }
   infoForm() {
     this.fb = new FormGroup({
@@ -53,7 +66,11 @@ export class Page1Component implements OnInit {
      ville:new FormControl('',Validators.required),
      //amenities: new FormArray([])
      amenities: new FormControl(''),
+<<<<<<< HEAD
      Files:new FormArray([])
+=======
+     fileid:new FormControl(''),
+>>>>>>> origin/houssem-branch
    });
   }
   getAccomodations(): void {
@@ -68,13 +85,25 @@ export class Page1Component implements OnInit {
     })
   }
   onShow() {
+<<<<<<< HEAD
       this.show = true;
+=======
+    if (this.show == true) {
+      this.show = false
+    } else {
+      this.show = true
+    }
+>>>>>>> origin/houssem-branch
   }
   getAccById(id:number): void {
     this.accomodationService.getAccbyId(id).subscribe((data: Accomodation) => {
      this.accomodation = data;
      this.onShow();
+<<<<<<< HEAD
      console.log(this.accomodation);
+=======
+     console.log("acc",this.accomodation);
+>>>>>>> origin/houssem-branch
      this.fb.setValue(this.accomodation);
      })
   }
@@ -113,9 +142,12 @@ export class Page1Component implements OnInit {
     this.ville1=event.target.value;
     this.fb.controls['ville'].setValue(event.target.value);
   }
+<<<<<<< HEAD
   getImaById(id:number): void {
     this.fileService.getimagebyId(id).subscribe((data: any) => {
      this.file = data;
      })
   }
+=======
+>>>>>>> origin/houssem-branch
 }

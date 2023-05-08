@@ -7,7 +7,11 @@ import { Observable } from 'rxjs';
 })
 export class FileService {
 
+<<<<<<< HEAD
   baseUrl = 'http://localhost:9091/File';
+=======
+  baseUrl = 'http://localhost:9090/File';
+>>>>>>> origin/houssem-branch
   storageUserAsStr: any = localStorage.getItem('currentUser')
   ? JSON.parse(localStorage.getItem('currentUser') || '{}')
   : null;
@@ -31,7 +35,11 @@ export class FileService {
     const formData : FormData = new FormData(); //Stores Key Value Pairs
     formData.append('file',file);
 
+<<<<<<< HEAD
     const req = new HttpRequest('POST', `${this.baseUrl}/upload`,formData, {
+=======
+    const req = new HttpRequest('POST', `${this.baseUrl}/accomodation/${AccId}`,formData, {
+>>>>>>> origin/houssem-branch
       reportProgress:true,
       responseType:'json'
     });
@@ -47,9 +55,12 @@ export class FileService {
   {
     return this.httpClient.get(`${this.baseUrl}`)
   }
+<<<<<<< HEAD
   getimagebyId(id:any): Observable<any>
   {
     return this.httpClient.get(`${this.baseUrl}/files/${id}`)
   }
+=======
+>>>>>>> origin/houssem-branch
 
 }
