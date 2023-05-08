@@ -18,7 +18,7 @@ import { BlogComponent } from './front/blog/blog.component';
 import { BookComponent } from './front/book/book.component';
 import { AccBookComponent } from './front/acc-book/acc-book.component';
 import { HeaderComponent } from './front/header/header.component';
-import { FooterComponent } from './front/footer/footer.component';
+
 
 
 export const appRouteList: Routes = [
@@ -64,7 +64,7 @@ export const appRouteList: Routes = [
 },
   {
       path: '**',
-      redirectTo: 'blog'
+      redirectTo: 'AccBookComponent'
   }
 ];
 
@@ -79,10 +79,11 @@ export const appRouteList: Routes = [
     AddRoomComponent,
     HomeComponent,
     BlogComponent,
+
     BookComponent,
     AccBookComponent,
     HeaderComponent,
-    FooterComponent,
+ 
   ],
   imports: [
     BrowserModule, FormsModule,
