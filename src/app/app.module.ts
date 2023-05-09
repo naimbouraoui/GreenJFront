@@ -23,6 +23,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { CommonModule } from '@angular/common';
 import { ToastrModule } from 'ngx-toastr';
+import { PublicationComponent } from './front/publication/publication.component';
+import { CommentComponent } from './front/comment/comment.component';
+import { EventComponent } from './backoffice/event/event.component';
+import { EventFormComponent } from './backoffice/event-form/event-form.component';
+import { TransportComponent } from './backoffice/transport/transport.component';
+import { TransportFormComponent } from './backoffice/transport-form/transport-form.component';
+import { EventListComponent } from './front/event-list/event-list.component';
+import { EventParticipateTransportComponent } from './front/event-participate-transport/event-participate-transport.component';
 
 
 
@@ -110,6 +118,31 @@ export const appRouteList: Routes = [
   loadChildren: () =>
     import('./front/messagingCenter/conversation-page/conversation-page.module').then((m) => m.ConversationPageModule),
 },
+{
+  path: 'event',
+  component: EventComponent
+},
+{
+  path: 'eventForm',
+  component: EventFormComponent
+},
+{
+  path: 'transport',
+  component: TransportComponent
+},
+{
+  path: 'transportForm',
+  component: TransportFormComponent
+},
+{
+  path: 'eventList',
+  component: EventListComponent
+},
+{
+  path: 'participate',
+  component: EventParticipateTransportComponent
+},
+
   {
       path: '**',
       redirectTo: 'blog'

@@ -1,0 +1,45 @@
+<app-sidenav></app-sidenav>
+<form class="w-50 p-3 float-end text-center">
+  <br>
+  <p class="fs-2 text-center">Event Registration Form</p>
+  <hr>
+  <!-- 2 column grid layout with text inputs for the first and last names -->
+  <div class="row mb-4 ">
+    <div class="col ">
+      <div class="form-outline row mb-4  ">
+        <div  class="col-md-4">
+            <label class="form-label" for="typeMoyen">Type moyen</label>
+        </div>
+        <div class="col-md-8">
+            <div >
+                <select id="typeMoyen" class="form-select" #typeMoyen>
+                    <option value="Train">Train</option>
+                    <option value="Avion">Avion</option>
+                    <option value="Bus">Bus</option>
+                    <option value="Voiture">Voiture</option>
+                    <option value="Metro">Metro</option> 
+                </select>
+            </div>
+        </div>
+      </div>
+      <div class="form-outline row mb-4  ">
+        <div  class="col-md-4">
+            <label class="form-label" for="dateFinEvent">Distance</label>
+        </div>
+        <div class="col-md-8">
+            <div class="form-outline">
+                <input #distance type="number" id="distance" class="form-control" >
+            </div>
+        </div>
+      </div>
+    
+
+    </div>
+
+  </div>
+
+  <br>
+  <br>
+
+  <button type="submit" class="btn btn-primary btn-block mb-4"  (click)="submit()">{{btnText}}</button>
+</form>
