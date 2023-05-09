@@ -12,11 +12,11 @@ import { React } from '../../models/React.enum';
 
 @Component({
   selector: 'app-publications',
-  templateUrl: './publication.component.html',
-  styleUrls: ['./publication.component.css',
+  templateUrl: './new-publication.component.html',
+  styleUrls: ['./new-publication.component.css',
 ]
 })
-export class PublicationComponent implements OnInit {
+export class NewPublicationComponent implements OnInit {
   publications: Publication[] = [];
   selectedPublication: Publication | null = null;
   commentForm: FormGroup;

@@ -12,7 +12,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class ReviewService {
-  private apiUrl = 'http://localhost:9091/Reviews';
+  private apiUrl = 'http://localhost:9091/api/Reviews';
   review: Review = new Review();
   constructor(
     private http: HttpClient

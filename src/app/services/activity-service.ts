@@ -13,7 +13,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class ActivityService {
-  private apiUrl = 'http://localhost:9091/Activities';
+  private apiUrl = 'http://localhost:9091/api/Activities';
   activity: Activity = new Activity();
   constructor(
     private http: HttpClient

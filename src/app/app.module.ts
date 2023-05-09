@@ -72,6 +72,10 @@ export const appRouteList: Routes = [
   component: BookComponent
 },
 {
+  path:'publications',
+  component:PublicationComponent
+},
+{
   path: 'accbook',
   component: AccBookComponent
 },
@@ -142,12 +146,17 @@ export const appRouteList: Routes = [
   path: 'participate',
   component: EventParticipateTransportComponent
 },
+{
+  path: 'publication',
+  component: NewPublicationComponent
+},
 
+{ path: '', redirectTo: 'blog', pathMatch: 'full' },
   {
       path: '**',
       redirectTo: 'blog'
-  },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  }
+
 ];
 import {ActivityComponent} from "./backoffice/activity/activity.component";
 import {ReviewComponent} from "./backoffice/review/review.component";
@@ -159,6 +168,7 @@ import { MessagingCenterComponent } from './front/messagingCenter/messaging-cent
 import { ConversationsListComponent } from './front/messagingCenter/conversations-list/conversations-list.component';
 import { ConversationPageComponent } from './front/messagingCenter/conversation-page/conversation-page.component';
 import { PipesModule } from './services/messagingCenter/pipes/pipes.module';
+import { NewPublicationComponent } from './front/new-publication/new-publication.component';
 
 
 
@@ -186,7 +196,16 @@ import { PipesModule } from './services/messagingCenter/pipes/pipes.module';
     ReclamationFrontComponent,
     MessagingCenterComponent,
     ConversationsListComponent,
-    ConversationPageComponent
+    ConversationPageComponent,
+    PublicationComponent,
+    CommentComponent,
+    TransportComponent,
+    EventComponent,
+    EventParticipateTransportComponent,
+    EventListComponent,
+    SidenavComponent,
+    FooterComponent,
+    NewPublicationComponent
   ],
   imports: [
     BrowserModule, FormsModule,
@@ -194,7 +213,7 @@ import { PipesModule } from './services/messagingCenter/pipes/pipes.module';
     HttpClientModule,
     RouterModule.forRoot(appRouteList),
     ReactiveFormsModule,
-    //ToastrModule.forRoot(),
+    ToastrModule.forRoot(),
     BrowserAnimationsModule,
     NgxUiLoaderModule,
     RouterModule,

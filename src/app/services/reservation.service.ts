@@ -12,7 +12,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class ReservationService {
-  baseUrl = 'http://localhost:9091/Reservation';
+  baseUrl = 'http://localhost:9091/api/Reservation';
   reservation: Reservation = new Reservation();
 
   constructor( private http: HttpClient) { }

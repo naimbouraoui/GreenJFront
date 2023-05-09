@@ -17,7 +17,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class AccomodationService {
-  baseUrl = 'http://localhost:9091/accomodation';
+  baseUrl = 'http://localhost:9091/api/accomodation';
   accomodation: Accomodation = new Accomodation();
   public dataForm!: FormGroup;
   constructor(

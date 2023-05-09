@@ -15,12 +15,12 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class UserService {
-  baseUrl = 'http://localhost:8080/UserController'
+  baseUrl = 'http://localhost:9091/api/UserController'
 requestHeader=new HttpHeaders(
   {"No-Auth":"True"}
 );
   constructor(private http:HttpClient,private userAuthService :UserAuthService) { }
- 
+
   //signUp
   signup(data :any){
     return this.http.post(this.baseUrl+"/register",data,{headers:new HttpHeaders().set('Content-Type','application/json')})
@@ -31,7 +31,7 @@ requestHeader=new HttpHeaders(
   }
   //login */
   public login(loginData:any){
-    
+
     return this.http.post(this.baseUrl+`/authenticate`,loginData,{headers :this.requestHeader});
   }
   public roleMatch(allowedRoles :any): boolean {
@@ -49,5 +49,5 @@ requestHeader=new HttpHeaders(
     }
     return isMatch; // return the result after the loop ends
   }
-  
+
 }

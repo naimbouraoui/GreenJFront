@@ -8,7 +8,7 @@ import { Comment } from '../models/Coment.model';
 })
 export class CommentService {
 
-  private BASE_URL = 'http://localhost:9091/Comment';
+  private BASE_URL = 'http://localhost:9091/api/Comment';
 
   constructor(private http: HttpClient) { }
 

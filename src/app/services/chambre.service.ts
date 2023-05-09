@@ -14,7 +14,7 @@ const httpOptions = {
 })
 export class ChambreService {
 
-    baseUrl = 'http://localhost:9091/Chambre';
+    baseUrl = 'http://localhost:9091/api/Chambre';
     chambre: Chambre = new Chambre();
     public dataForm!: FormGroup;
 

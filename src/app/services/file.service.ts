@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class FileService {
 
-  baseUrl = 'http://localhost:9090/File';
+  baseUrl = 'http://localhost:9091/api/File';
   storageUserAsStr: any = localStorage.getItem('currentUser')
   ? JSON.parse(localStorage.getItem('currentUser') || '{}')
   : null;

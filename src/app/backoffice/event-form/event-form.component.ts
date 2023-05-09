@@ -21,7 +21,7 @@ export class EventFormComponent implements OnInit {
   @ViewChild("region", { static: true }) region!: ElementRef;
   @ViewChild("name", { static: true }) name!: ElementRef;
   @ViewChild("description", { static: true }) description!: ElementRef;
-  
+
   constructor(private eventService: EventService,
     private router: Router,
     private activeRouter: ActivatedRoute) { }
@@ -31,7 +31,7 @@ export class EventFormComponent implements OnInit {
   ngOnInit(): void {
     this.activeRouter.queryParams
       .subscribe(params => {
-        // console.log(params); 
+        // console.log(params);
         this.id = params['id'];
       }
     );
@@ -74,7 +74,7 @@ export class EventFormComponent implements OnInit {
         // console.log("response", response)
         this.router.navigate(['/event']);
       });
-  
+
     }
   }
 

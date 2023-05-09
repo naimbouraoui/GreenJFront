@@ -1,3 +1,4 @@
+
 <div #content  class="row" style="margin-top: 10px;" *ngFor="let message of messagesToShow">
     <div class="col-12">
         <div class="chatbox" [ngClass]="{left: !isSender(message),right:isSender(message)}">
@@ -24,3 +25,7 @@
         </button>
     </div>
 </div>
+<div class="fixed-bottom">
+  <app-footer></app-footer>
+  </div>
+
