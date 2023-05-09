@@ -25,7 +25,7 @@ export class PublicationComponent implements OnInit {
   showAddCommentForm: boolean = false;
   newCommentContent: string = ''; // add an empty string initializer
   selectedReactionType: React = React.Love;
-  
+
 
 
 
@@ -62,7 +62,7 @@ toggleAddCommentForm() {
       });
     });
   }
-  
+
 
   addPublication(): void {
     const publication: Publication = {
@@ -123,7 +123,7 @@ toggleAddCommentForm() {
       }
     );
   }
-  
+
 
 
   cancelEdit(): void {
@@ -150,5 +150,5 @@ toggleAddCommentForm() {
       console.log('Error adding reaction: ', error);
     });
   }
-  
+
 }

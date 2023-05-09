@@ -16,7 +16,7 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let publication of publications">
-                        
+
                         <td>{{ publication.pubDate | date }}</td>
                         <td>{{ publication.content }}</td>
                         <td><img src="https://images.pexels.com/photos/15286/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=600" width="100px"></td>
@@ -26,17 +26,17 @@
                       <td>
                           <button class="btn btn-info" (click)="updatePublication(publication)">Edit</button>
                           <button class="btn btn-danger" (click)="deletePublication(publication.id)">Delete</button>
-                          
+
                           <button (click)="toggleAddCommentForm()">Add Comment</button>
-                          
+
                           <div *ngIf="showAddCommentForm">
                               <form #commentForm="ngForm" (ngSubmit)="addCommentToPublication(publication.id,newCommentContent)">
-                                <input type="hidden" name="publicationId" [value]="showAddCommentForm" >    
+                                <input type="hidden" name="publicationId" [value]="showAddCommentForm" >
                                   <textarea name="content" [(ngModel)]="newCommentContent" required></textarea>
                                   <button type="submit">Add</button>
                               </form>
                           </div>
-                        
+
                           <button class="btn btn-primary" (click)="publication.showComments = !publication.showComments">
                               {{ publication.showComments ? 'Hide Comments' : 'Show Comments' }}
                           </button>
@@ -58,7 +58,7 @@
           <form (ngSubmit)="addPublication()" #publicationForm="ngForm">
               <div class="form-group">
                   <label for="content">Content</label>
-                  <input type="text" class="form-control" id="content" required [(ngModel)]="newPublicationContent" name="content" />
+                  <input type="text" class="form-control" id="content" required [(ngMode)]="newPublicationContent" name="content" />
               </div>
               <button type="submit" class="btn btn-success" [disabled]="!publicationForm.form.valid">Add Publication</button>
           </form>

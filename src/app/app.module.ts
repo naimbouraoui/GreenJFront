@@ -194,7 +194,7 @@ import { PipesModule } from './services/messagingCenter/pipes/pipes.module';
     HttpClientModule,
     RouterModule.forRoot(appRouteList),
     ReactiveFormsModule,
-    ToastrModule.forRoot(),
+    //ToastrModule.forRoot(),
     BrowserAnimationsModule,
     NgxUiLoaderModule,
     RouterModule,
