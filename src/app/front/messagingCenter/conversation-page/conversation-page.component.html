@@ -1,31 +1,42 @@
+<div class="wrapper ">
+    <div class="main-panel">
+        <app-sidenav></app-sidenav>
+        <div class="content" style="height: 100vh;margin-top: 25px !important;">
+            <div class="card" style="height: 100vh;">
+                <div class="card-body">
+            <div #content class="row" style="margin-top: 10px;" *ngFor="let message of messagesToShow">
+                <div class="col-12">
+                    <div class="chatbox" [ngClass]="{left: !isSender(message),right:isSender(message)}">
 
-<div #content  class="row" style="margin-top: 10px;" *ngFor="let message of messagesToShow">
-    <div class="col-12">
-        <div class="chatbox" [ngClass]="{left: !isSender(message),right:isSender(message)}">
+                        <div>
+                            <h4 class="mediumMonserrat16 text_grey noMargins" *ngIf="!isSender(message)">
+                                {{message.userName}}
+                            </h4>
+                            <p class="mediumMonserrat16 text_blue margin_top05 margin_bottom05">{{message.message}}</p>
+                        </div>
 
-            <div>
-                <h4 class="mediumMonserrat16 text_grey noMargins" *ngIf="!isSender(message)">{{message.userName}}
-                </h4>
-                <p class="mediumMonserrat16 text_blue margin_top05 margin_bottom05">{{message.message}}</p>
+                        <span class="regularMonserrat14 text_grey">{{message.date | DateFormat}}</span>
+                    </div>
+                </div>
             </div>
 
-            <span class="regularMonserrat14 text_grey">{{message.date | DateFormat}}</span>
+            <div class="row" style="margin-top: 20px;" style="position: fixed;bottom: 10px;  width: 75%;margin: auto;">
+                <div class="col-10" style="margin: auto;">
+                    <input type="text" class="borderRadius18px semiBoldMonserrat16" placeholder="Aa"
+                        style="width: 100%;margin: auto;" [(ngModel)]="textMessage" />
+                </div>
+                <div class="col-1" style="margin: auto;">
+                    <button (click)="send()">
+                        Envoyer
+                    </button>
+                </div>
+            </div>
+        <!--     <div class="fixed-bottom">
+                <app-footer></app-footer>
+            </div> -->
+                </div>
+            </div>  
+
         </div>
     </div>
 </div>
-
-<div class="row" style="margin-top: 20px;" style="position: fixed;bottom: 10px;  width: 100%;margin: auto;">
-    <div class="col-10" style="margin: auto;">
-        <input type="text" class="borderRadius18px semiBoldMonserrat16" placeholder="Aa" style="width: 100%;margin: auto;"
-            [(ngModel)]="textMessage" />
-    </div>
-    <div class="col-1" style="margin: auto;">
-        <button (click)="send()">
-            Envoyer
-        </button>
-    </div>
-</div>
-<div class="fixed-bottom">
-  <app-footer></app-footer>
-  </div>
-

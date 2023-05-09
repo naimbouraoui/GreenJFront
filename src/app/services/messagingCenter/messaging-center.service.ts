@@ -20,6 +20,7 @@ import {
   AccountConversationCreationType,
   MessageType,
 } from 'src/app/models/Messaging-center/MessagesType';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -27,17 +28,20 @@ import {
 export class MessagingCenterService {
   allAccounts!: AccountType[];
   allAccountsChanged = new Subject();
-  messagesChanged = new Subject();
+  messagesChanged = new BehaviorSubject([]);
   accountMessagesChanged = new Subject();
   loggedInAccountConversations: any = [];
   loggedInUser!: AccountType;
-  constructor(private toastr: ToastrService, private router: Router) {}
+  private BASE_URL = 'http://localhost:9091/api';
+
+  constructor(private toastr: ToastrService, private router: Router, private http: HttpClient
+  ) { }
 
 
   // logged in User Conversations
   getAllLoggedUserAccountConversations() {
     const loggedInUser = this.getLoggedInUser();
-    const loggedInUserId = loggedInUser.accountId;
+    const loggedInUserId = loggedInUser && loggedInUser.accountId;
     return new Promise((resolve, reject) => {
       const db = getDatabase();
       const starCountRef = ref(
@@ -95,26 +99,27 @@ export class MessagingCenterService {
     return new Promise((resolve, reject) => {
       const db = getDatabase();
       update(ref(db, '/conversations/' + conversationId), payload)
-        .then(() => {})
+        .then(() => { })
         .catch((error) => {
           this.presentErrorToast(error);
         });
     });
   }
   getConversationMessages(conversationId: string) {
-    return new Promise <void>((resolve, reject) => {
+    return new Promise((resolve, reject) => {
       const db = getDatabase();
       const starCountRef = ref(
         db,
         '/conversations/' + conversationId + '/messages'
       );
-      //const unsubscribe = onValue(starCountRef, (resp) => {
-        onValue(starCountRef, (resp) => {
+    const unsubscribe = onValue(starCountRef, (resp) => {
+     // onValue(starCountRef, (resp) => {
         const item = resp.val();
         this.messagesChanged.next(item);
-      //  resolve(unsubscribe);
-        resolve();
+        //resolve();
       });
+      resolve(unsubscribe);
+
     });
   }
   getConversationIdByInterlocutorId(userUid: string) {
@@ -137,7 +142,7 @@ export class MessagingCenterService {
       const db = getDatabase();
       const lastMessage =
         conversationCreationPayload.messages[
-          conversationCreationPayload.messages.length - 1
+        conversationCreationPayload.messages.length - 1
         ];
       const payload = {
         conversationId: conversationCreationPayload.newConversationId,
@@ -262,7 +267,7 @@ export class MessagingCenterService {
       onValue(starCountRef, (resp) => {
         let list = snapshotToArray(resp);
         if (list && list.length !== 0) {
-          console.log('recieved account page ',list)
+          console.log('recieved account page ', list)
           this.allAccounts = list;
           this.allAccountsChanged.next(list);
           resolve(true);
@@ -283,12 +288,25 @@ export class MessagingCenterService {
   }
 
   // Utils
-
   presentToast(param: string) {
-    this.toastr.success(param);
+    // this.toastr.success(param);
   }
   presentErrorToast(param: string) {
-    this.toastr.error(param);
+    // this.toastr.error(param);
   }
+  getAll() {
+    return new Promise(async (resolve, reject) => {
+      const apiData = await this.http.get<Event[]>(`${this.BASE_URL}/event/getAll`).subscribe(items=>{
+        console.log('recieved items ',items);
+        resolve(apiData)
+      });
+    })
+  }
+  /*   public getNewEvent(id: number): Observable<Event[]> {
+      return this.http.get<Event[]>(`${this.apiServerUrl}/event/getNewEvent/${id}`);
+    }
+    public participate(idEvent: number, idUser: number): Observable<void> {
+      return this.http.post<void>(`${this.apiServerUrl}/event/participate/${idEvent}/${idUser}`, null);
+    } */
 
 }
