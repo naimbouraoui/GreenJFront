@@ -21,6 +21,8 @@ import { HeaderComponent } from './front/header/header.component';
 import { FooterComponent } from './front/footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
+import { CommonModule } from '@angular/common';
+import { ToastrModule } from 'ngx-toastr';
 
 
 
@@ -76,6 +78,10 @@ import {ReclamationComponent} from "./backoffice/reclamation/reclamation.compone
 import {NewActivityComponent} from "./backoffice/new-activity/new-activity.component";
 import {ActivityFrontComponent} from "./front/activityFront/activityFront.component";
 import {ReclamationFrontComponent} from "./front/reclamationFront/reclamationFront.component";
+import { MessagingCenterComponent } from './front/messagingCenter/messaging-center/messaging-center.component';
+import { ConversationsListComponent } from './front/messagingCenter/conversations-list/conversations-list.component';
+import { ConversationPageComponent } from './front/messagingCenter/conversation-page/conversation-page.component';
+import { PipesModule } from './services/messagingCenter/pipes/pipes.module';
 
 
 
@@ -100,7 +106,10 @@ import {ReclamationFrontComponent} from "./front/reclamationFront/reclamationFro
     ReclamationComponent,
     NewActivityComponent,
     ActivityFrontComponent,
-    ReclamationFrontComponent
+    ReclamationFrontComponent,
+    MessagingCenterComponent,
+    ConversationsListComponent,
+    ConversationPageComponent
   ],
   imports: [
     BrowserModule, FormsModule,
@@ -108,12 +117,13 @@ import {ReclamationFrontComponent} from "./front/reclamationFront/reclamationFro
     HttpClientModule,
     RouterModule.forRoot(appRouteList),
     ReactiveFormsModule,
+    ToastrModule.forRoot(),
     BrowserAnimationsModule,
     NgxUiLoaderModule,
     RouterModule,
     ReactiveFormsModule,
-    FormsModule
-
+    CommonModule,
+    PipesModule
   ],
   providers: [],
   bootstrap: [AppComponent]

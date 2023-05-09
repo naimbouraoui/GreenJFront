@@ -75,7 +75,7 @@ export class MessagingCenterService {
   getLoggedInUser() {
     return this.loggedInUser;
   }
-  // Conversations listings 
+  // Conversations listings
   createConversation(newMessage: ConversationType) {
     return new Promise<string>((resolve, reject) => {
       const db = getDatabase();
@@ -127,7 +127,7 @@ export class MessagingCenterService {
       resolve(result);
     });
   }
-  // Conversation update / creation flow 
+  // Conversation update / creation flow
   createAccountConversation(
     senderUid: string,
     recieverUid: string,
@@ -282,7 +282,7 @@ export class MessagingCenterService {
     return foundUser;
   }
 
-  // Utils 
+  // Utils
 
   presentToast(param: string) {
     this.toastr.success(param);
