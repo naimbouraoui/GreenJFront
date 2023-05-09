@@ -109,6 +109,10 @@ export const appRouteList: Routes = [
 },
 {
   path: 'messagingCenter',
+  component: MessagingCenterComponent
+},
+{
+  path: 'messagingCenterPage',
   loadChildren: () =>
     import('./front/messagingCenter/messaging-center/messaging-center.module').then((m) => m.MessagingCenterModule),
 },

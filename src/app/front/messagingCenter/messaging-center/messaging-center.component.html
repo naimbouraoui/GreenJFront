@@ -1,26 +1,54 @@
-<div class="container">
-<div class="grid">
-<div class="row" style="margin-top: 20px;">
-    <div class="col-3">
-        <button (click)="addAccount()" class="mediumMonserrat16">Ajouter un compte</button>
-    </div>
-    <div class="col-3">
-        <button (click)="createConversation(0)" class="mediumMonserrat16">Create conversation 0-1 </button>
-    </div>
-    <div class="col-3">
-        <button (click)="createConversation(2)">Create conversation 3-4 </button>
-    </div>
-</div>
-<div class="row" *ngFor="let item of allAccounts" style="margin-top: 20px;" >
-    <div class="col-11">
-        <div>
-            <h3 class="mediumMonserrat16">Flat name : {{item.accountFlatName}}</h3>
-            <h3 class="mediumMonserrat16">Id : {{item.accountId}}</h3>
+<div class="wrapper ">
+    <div class="main-panel">
+        <app-sidenav></app-sidenav>
+        <div class="content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title" style="margin-left: 30%; font-size:xx-large; color: coral;"> Centre de messagerie
+                                
+                            </h4>
+                            <div class="row" style="margin-top: 20px;">
+                                <div class="col-4">
+                                    <button type="button" class="btn btn-primary" (click)="addAccount()" >Ajouter un
+                                        compte</button>
+                                </div>
+                                <div class="col-4">
+                                    <button type="button" class="btn btn-primary" (click)="createConversation(0)">Create
+                                        conversation 0-1 </button>
+                                </div>
+                                <div class="col-4">
+                                    <button type="button" class="btn btn-primary" (click)="createConversation(2)">Create conversation 3-4 </button>
+                                </div>
+                            </div>
+                          <!--   <button type="button" class="btn btn-primary" routerLink="/NewActivity">Add New
+                                Activity</button> -->
+
+
+                            
+                        </div>
+                        <br>
+                        <div class="card-body">
+                            <div class="grid">
+                             
+                                <div class="row" *ngFor="let item of allAccounts" style="margin-top: 20px;border-bottom:1px solid grey;">
+                                    <div class="col-10">
+                                        <div>
+                                            <h3 class="mediumMonserrat16">Flat name : {{item.accountFlatName}}</h3>
+                                            <h3 class="mediumMonserrat16">Id : {{item.accountId}}</h3>
+                                        </div>
+                                    </div>
+                                    <div class="col-2" style="margin: auto;">
+                                        <button (click)="login(item.accountId)" type="button" class="btn btn-success">Login
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="col-1" style="margin: auto;">
-        <button (click)="login(item.accountId)" class="mediumMonserrat16">Login </button>
-    </div>
-</div>
-</div>
 </div>

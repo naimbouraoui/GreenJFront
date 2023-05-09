@@ -5,15 +5,15 @@ import { MessagingCenterComponent } from './messaging-center.component';
 import { PipesModule } from 'src/app/services/messagingCenter/pipes/pipes.module';
 
 
-
+/* 
 const routes: Routes = [{ path: '', component: MessagingCenterComponent }
-];
+]; */
 
 
 @NgModule({
   declarations: [],
   imports: [
-    RouterModule.forChild(routes),
+   // RouterModule.forChild(routes),
     CommonModule,
     //PipesModule
   ]

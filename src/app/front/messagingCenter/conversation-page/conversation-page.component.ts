@@ -1,5 +1,5 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MessageType } from 'src/app/models/Messaging-center/MessagesType';
 import { AccountType } from 'src/app/models/Messaging-center/accountType';
@@ -13,8 +13,7 @@ import { MessagingCenterService } from 'src/app/services/messagingCenter/messagi
   templateUrl: './conversation-page.component.html',
   styleUrls: ['./conversation-page.component.css'],
 })
-export class ConversationPageComponent implements OnInit {
-  @ViewChild('content') content!:ElementRef;
+export class ConversationPageComponent implements OnInit,OnDestroy {
   userId!: string;
   conversationId!: string;
   pageTitle: any;
@@ -37,9 +36,18 @@ export class ConversationPageComponent implements OnInit {
   loggedInUserFlatName!: string;
   constructor(
     private activatedRoute: ActivatedRoute,
-    private messageSrv: MessagingCenterService
+    private messageSrv: MessagingCenterService,
+    private router:Router
   ) {}
-
+    ngOnDestroy(): void {
+      console.log('ondestroy',);
+      //console.log('ionwill leave',);
+    this.showBackground = false;
+    this.messages = null!;
+    this.messagesToShow = null;
+    this.messageChangeSub.unsubscribe();
+   // this.setMessagesRead();
+    }
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe((params) => {
       this.conversationId = params['conversationId'];
@@ -48,6 +56,7 @@ export class ConversationPageComponent implements OnInit {
     this.initPage();
     this.messageChangeSub = this.messageSrv.messagesChanged.subscribe(
       (items) => {
+        console.log('items ',items);
         const loggedInUser = this.messageSrv.getLoggedInUser();
         const loggedInUserId = loggedInUser.accountId;
         const loggedInUserName = loggedInUser.accountFlatName;
@@ -63,14 +72,16 @@ export class ConversationPageComponent implements OnInit {
     this.showBackground = true;
   }
   ionViewWillLeave() {
+    console.log('ionwill leave',);
     this.showBackground = false;
     this.messages = null!;
     this.messagesToShow = null;
-    this.messageChangeSub.unsubscribe();
+  //  this.messageChangeSub.unsubscribe();
     this.setMessagesRead();
   }
 
   initPage() {
+    console.log('init page',);
     const user = this.messageSrv.getUserByUid(this.userId)!;
     this.pageTitle = user ? user.accountFlatName : 'Utilisateur supprimé';
     this.interlocutor = user;
@@ -82,10 +93,12 @@ export class ConversationPageComponent implements OnInit {
     this.loggedInUserFlatName = loggedInUserName;
   }
   async initConversaton() {
+    console.log('init conv',this.conversationId);
     this.conversationId &&
       (this.conversationSubs = await this.messageSrv.getConversationMessages(
         this.conversationId
       ));
+      console.log('conv subs',this.conversationSubs);
     if (!this.conversationId) {
       const foundConversationId =
         await this.messageSrv.getConversationIdByInterlocutorId(this.userId);
@@ -96,10 +109,13 @@ export class ConversationPageComponent implements OnInit {
     }
   }
   async getConversationData() {
+    console.log('getconv data',this.messages);
+    console.log('this.converdata',this.conversationData);
     let conversationMessages = this.conversationData;
     conversationMessages =
       conversationMessages !== null ? conversationMessages : [];
     if (this.messages) {
+      console.log('if messages ',);
       if (conversationMessages.length > this.messages.length) {
         let message = conversationMessages[conversationMessages.length - 1];
         message.avatar = this.interlocutor?.pictureAvatar;
@@ -108,6 +124,7 @@ export class ConversationPageComponent implements OnInit {
         this.messagesToShow.push(message);
       }
     } else {
+      console.log('else ',this.messages);
       this.messages = [];
       conversationMessages &&
         conversationMessages.forEach((message: MessageType) => {
@@ -127,8 +144,8 @@ export class ConversationPageComponent implements OnInit {
       for (let i = this.startIndex; i < this.messages.length; i++) {
         this.messagesToShow.push(this.messages[i]);
       }
+      console.log('result else messagesToShow =',this.messagesToShow);
     }
-    this.scrollToPageBottom()
   }
   send() {
     if (this.conversationId) {
@@ -193,7 +210,6 @@ export class ConversationPageComponent implements OnInit {
     }
     this.textMessage = '';
     this.mediaUrl = '';
-    this.scrollToPageBottom()
   }
   async setMessagesRead() {
     this.messageSrv.setAccountConversationReadMessage(
@@ -234,9 +250,8 @@ export class ConversationPageComponent implements OnInit {
       return false;
     }
   }
-
-  scrollToPageBottom()
+  navigateBack()
   {
-    this.content.nativeElement.scrollTop = this.content.nativeElement.scrollHeight
-    }
+    this.router.navigate(['ConversationList']);
+  }
 }
