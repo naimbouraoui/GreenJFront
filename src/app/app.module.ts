@@ -67,10 +67,54 @@ export const appRouteList: Routes = [
   path: 'accbook',
   component: AccBookComponent
 },
+{
+  path : 'Activities',
+  component: ActivityComponent
+},
+{
+  path : 'NewActivity',
+  component: NewActivityComponent
+},
+{
+  path : 'review',
+  component: ReviewComponent
+},
+{
+  path : 'reclamation',
+  component: ReclamationComponent
+},
+{
+  path: 'dash',
+  component: BlogComponent
+},
+{
+  path: 'recFront',
+  component: ReclamationFrontComponent
+},
+{
+  path: 'acFront',
+  component: ActivityFrontComponent
+},
+{
+  path: 'messagingCenter',
+  loadChildren: () =>
+    import('./front/messagingCenter/messaging-center/messaging-center.module').then((m) => m.MessagingCenterModule),
+},
+{
+  path: 'ConversationList',
+  loadChildren: () =>
+    import('./front/messagingCenter/conversations-list/conversation-list.module').then((m) => m.ConversationListModule),
+},
+{
+  path: 'ConversationPage',
+  loadChildren: () =>
+    import('./front/messagingCenter/conversation-page/conversation-page.module').then((m) => m.ConversationPageModule),
+},
   {
       path: '**',
       redirectTo: 'blog'
-  }
+  },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];
 import {ActivityComponent} from "./backoffice/activity/activity.component";
 import {ReviewComponent} from "./backoffice/review/review.component";
